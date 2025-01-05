@@ -1,0 +1,32 @@
+{
+  "name": "s8-inprocode",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "shared"
+  ],
+  "version": "1.0.0",
+  "description": "React App with Node API",
+  "keywords": [
+    "express",
+    "node",
+    "react",
+    "api",
+    "calendar",
+    "chart",
+    "map"
+  ],
+  "license": "ISC",
+  "author": "Javier Andreu - dracudev",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:frontend": "npm --workspace frontend run dev",
+    "start:backend": "npm --workspace backend start",
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
