@@ -5,10 +5,13 @@ import "./globals.css";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <head>
+        <title>S8 - Inprocode</title>
+      </head>
+      <body className="bg-slate-500">
         <SidebarProvider>
           <AppSidebar />
-          <main>
+          <main className="flex flex-grow">
             <SidebarTrigger />
             {children}
           </main>
