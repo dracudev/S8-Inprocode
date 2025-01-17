@@ -4,49 +4,80 @@ import Game from "./models/gameModel.js";
 const insertInitialUserData = async () => {
   const userData = [
     {
-      email: "ismael.academy@gmail.com",
-      password: "$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q", //pass: ismael123
-      name: "Ismael",
+      email: "mail1@mail.com",
+      password: "1234",
+      username: "User1",
+      roles: ["user", "admin", "mod"],
+    },
+    {
+      email: "mail2@mail.com",
+      password: "1234",
+      username: "User2",
       roles: ["user"],
     },
     {
-      email: "laura@hotmail.com",
-      password: "$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q", //pass: ismael123
-      name: "Laura",
+      email: "mail3@mail.com",
+      password: "1234",
+      username: "User3",
       roles: ["user"],
     },
     {
-      email: "maria@hotmail.com",
-      password: "$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q", //pass: ismael123
-      name: "Maria",
-      surname: "kale",
-      roles: ["mod", "admin"],
+      email: "mail4@mail.com",
+      password: "1234",
+      username: "User4",
+      roles: ["user"],
     },
     {
-      email: "mod@hotmail.com",
-      password: "$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q", //pass: ismael123
-      name: "Moderador",
-      surname: "kale",
-      roles: ["admin"],
-    },
-    {
-      email: "admin@hotmail.com",
-      password: "$2b$10$tXrqo7VdSPCLAsIUhrVsYejYeMt9FLo9J4OchgCKwuDvpeDK6Xf1q", //pass: ismael123
-      name: "Admin",
-      surname: "kale",
-      roles: ["admin"],
+      email: "mail5@mail.com",
+      password: "1234",
+      username: "User5",
+      roles: ["user"],
     },
   ];
-  // Insertar datos con opción ignoreDuplicates
+
   // Para actualizar todas las filas: updateOnDuplicate: Object.keys(User.rawAttributes)
+  // Para actualizar solo algunas columnas: updateOnDuplicate: ["email", "password"]
   await User.bulkCreate(userData, { ignoreDuplicates: true });
 
+  const users = await User.findAll();
+  const userMap = {};
+  users.forEach((user) => {
+    userMap[user.username] = user.id_user;
+  });
+
   const gameData = [
-    { title: "TituloA", year: 1955 },
-    { title: "TituloB", year: 1988 },
-    { title: "TituloC", year: 1475, user_id: 2 },
+    {
+      title: "TituloA",
+      year: 1999,
+      user_id: userMap["User1"],
+      platform: ["PC"],
+    },
+    {
+      title: "TituloA",
+      year: 1999,
+      user_id: userMap["User2"],
+      platform: ["PC"],
+    },
+    {
+      title: "TituloC",
+      year: 1475,
+      user_id: userMap["User2"],
+      platform: ["Xbox"],
+    },
+    {
+      title: "TituloD",
+      year: 2021,
+      user_id: userMap["User3"],
+      platform: ["Nintendo"],
+    },
+    {
+      title: "TituloE",
+      year: 2021,
+      user_id: userMap["User4"],
+      platform: ["Mobile"],
+    },
   ];
-  // Insertar datos con opción ignoreDuplicates
+
   await Game.bulkCreate(gameData, { ignoreDuplicates: true });
 };
 

@@ -107,7 +107,7 @@ export const addGame = async (req, res) => {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: "Ha ocurrido un error al añadir el libro",
+      message: "Ha ocurrido un error al añadir el juego",
     });
   }
 };
@@ -148,7 +148,7 @@ export const updateGame = async (req, res) => {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: "Ha ocurrido un error al actualizar el libro",
+      message: "Ha ocurrido un error al actualizar el juego",
     });
   }
 };
@@ -184,7 +184,7 @@ export const deleteGame = async (req, res) => {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: "Ha ocurrido un error al eliminar el libro",
+      message: "Ha ocurrido un error al eliminar el juego",
     });
   }
 };

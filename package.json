@@ -24,7 +24,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:frontend": "npm --workspace frontend start",
     "start:backend": "npm --workspace backend start",
-    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "lint": "eslint ./frontend ./backend"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",

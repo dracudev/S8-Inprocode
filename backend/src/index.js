@@ -17,7 +17,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:5173", "http://localhost:4200"],
+    origin: ["http://localhost:3306", "http://localhost:3001"],
   })
 );
 
@@ -41,6 +41,8 @@ app.use("/game", gameRoutes);
 app.use("/test", testRoutes);
 
 // Iniciar el servidor
-app.listen(3000, () => {
-  console.log("Servidor iniciado en el puerto 3000");
+const PORT = process.env.PORT ?? 3000;
+
+app.listen(PORT, () => {
+  console.log(`server listening on port http://localhost:${PORT}`);
 });

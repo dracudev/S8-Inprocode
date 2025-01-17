@@ -9,16 +9,17 @@ const sequelize = new Sequelize(
   process.env.PASSWORD,
   {
     host: process.env.HOST_NAME,
+    port: 3306,
     dialect: "mysql",
   }
 );
 
 const syncroModel = async () => {
   try {
-    // Sincronizar el modelo con la base de datos (crear la tabla si no existe)
-    // Con "alter: true" se sincronizan las columnas y se crean/eliminan si fuera necesario
-    await sequelize.sync({ force: false }).then(() => {
-      console.log("Modelos sincronizado con la base de datos");
+    // "force: true" elimina la tabla si ya existe y la vuelve a crear
+    // "alter: true" sincroniza las columnas y crea/elimina si es necesario
+    await sequelize.sync({ force: true }).then(() => {
+      console.log("Syncronized models with database");
     });
   } catch (error) {
     console.error("Unable to connect to the database:", error);
