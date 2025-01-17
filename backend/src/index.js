@@ -6,6 +6,7 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import gameRoutes from "./routes/gameRoutes.js";
 import testRoutes from "./routes/testRoutes.js";
+import userGameRoutes from "./routes/userGameRoutes.js";
 import { testConnection } from "./db.js";
 import dotenv from "dotenv";
 import { insertInitialUserData } from "./start_data.js";
@@ -37,6 +38,7 @@ await insertInitialUserData();
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/game", gameRoutes);
+app.use("/user-game", userGameRoutes);
 
 app.use("/test", testRoutes);
 

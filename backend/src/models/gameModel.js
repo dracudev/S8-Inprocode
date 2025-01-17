@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../db.js";
-import User from "./userModel.js";
 
 const allowedPlatforms = ["PC", "PlayStation", "Xbox", "Nintendo", "Mobile"];
 
@@ -11,9 +10,6 @@ const Game = sequelize.define(
       type: DataTypes.INTEGER(8).UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
-    },
-    user_id: {
-      type: DataTypes.UUID,
     },
     title: {
       type: DataTypes.STRING(100),
@@ -60,7 +56,5 @@ const Game = sequelize.define(
     createdAt: "created_at",
   }
 );
-User.hasMany(Game, { foreignKey: "user_id" });
-Game.belongsTo(User, { foreignKey: "user_id" });
 
 export default Game;
