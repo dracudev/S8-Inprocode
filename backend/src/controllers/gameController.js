@@ -1,7 +1,7 @@
-import Book from '../models/bookModel.js';
-import { validationResult } from 'express-validator';
+import Game from "../models/gameModel.js";
+import { validationResult } from "express-validator";
 
-export const getBooks = async (req, res) => {
+export const getGames = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -11,24 +11,24 @@ export const getBooks = async (req, res) => {
     }
 
     // Obtener todos los usuarios de la base de datos
-    const books = await Book.findAll();
+    const games = await Game.findAll();
 
     // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
-      message: 'Books List',
-      data: books
+      message: "Games List",
+      data: games,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: 'Ha ocurrido un error al obtener los libros',
+      message: "Ha ocurrido un error al obtener los libros",
     });
   }
 };
 
-export const getBookById = async (req, res) => {
+export const getGameById = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -40,30 +40,30 @@ export const getBookById = async (req, res) => {
     const { id } = req.params;
 
     // Buscar un usuario por su ID en la base de datos
-    const book = await Book.findByPk(id);
-    if (!book) {
+    const game = await Game.findByPk(id);
+    if (!game) {
       return res.status(404).json({
         code: -6,
-        message: 'Libro no encontrado'
+        message: "Libro no encontrado",
       });
     }
 
     // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
-      message: 'Book Detail',
-      data: book
+      message: "Game Detail",
+      data: game,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: 'Ha ocurrido un error al obtener el libro'
+      message: "Ha ocurrido un error al obtener el libro",
     });
   }
 };
 
-export const addBook = async (req, res) => {
+export const addGame = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -73,42 +73,46 @@ export const addBook = async (req, res) => {
     }
 
     const { title, year } = req.body;
-    let newBook;
+    let newGame;
     try {
-      newBook = await Book.create({ title: title, year: year, user_id: req.user.id_user });
+      newGame = await Game.create({
+        title: title,
+        year: year,
+        user_id: req.user.id_user,
+      });
     } catch (error) {
       // Si hay un error de duplicación de clave única (por ejemplo, título duplicado)
-      if (error.name === 'SequelizeUniqueConstraintError') {
+      if (error.name === "SequelizeUniqueConstraintError") {
         res.status(400).json({
           code: -61,
-          message: 'Duplicate Book Title'
+          message: "Duplicate Game Title",
         });
       }
     }
 
-    if (!newBook) {
+    if (!newGame) {
       return res.status(404).json({
         code: -6,
-        message: 'Error When Adding The Book'
+        message: "Error When Adding The Game",
       });
     }
 
     // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
-      message: 'Book Added Successfully',
-      data: newBook
+      message: "Game Added Successfully",
+      data: newGame,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: 'Ha ocurrido un error al añadir el libro'
+      message: "Ha ocurrido un error al añadir el libro",
     });
   }
 };
 
-export const updateBook = async (req, res) => {
+export const updateGame = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -121,35 +125,35 @@ export const updateBook = async (req, res) => {
     const { title, year } = req.body;
 
     // Buscar un usuario por su ID en la base de datos
-    const book = await Book.findByPk(id);
-    if (!book) {
+    const game = await Game.findByPk(id);
+    if (!game) {
       return res.status(404).json({
         code: -3,
-        message: 'Book no encontrado'
+        message: "Game no encontrado",
       });
     }
 
     // Actualizar el correo electrónico y la contraseña del usuario
-    book.title = title;
-    book.year = year;
-    await book.save();
+    game.title = title;
+    game.year = year;
+    await game.save();
 
     // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
-      message: 'Book Updated Successfully',
-      data: book
+      message: "Game Updated Successfully",
+      data: game,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: 'Ha ocurrido un error al actualizar el libro'
+      message: "Ha ocurrido un error al actualizar el libro",
     });
   }
 };
 
-export const deleteBook = async (req, res) => {
+export const deleteGame = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -161,27 +165,26 @@ export const deleteBook = async (req, res) => {
     const { id } = req.params;
 
     // Buscar un libro por su ID en la base de datos y eliminarlo
-    const deletedBook = await Book.destroy({ where: { id_book: id } });
+    const deletedGame = await Game.destroy({ where: { id_game: id } });
 
     // Verificar si el libro fue encontrado y eliminado
-    if (!deletedBook) {
+    if (!deletedGame) {
       return res.status(404).json({
         code: -100,
-        message: 'Book Not Found'
+        message: "Game Not Found",
       });
-     }
- 
+    }
+
     // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
-      message: 'Book Deleted Successfully'
+      message: "Game Deleted Successfully",
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: 'Ha ocurrido un error al eliminar el libro'
+      message: "Ha ocurrido un error al eliminar el libro",
     });
   }
 };
