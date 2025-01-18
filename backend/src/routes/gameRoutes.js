@@ -21,12 +21,14 @@ router.get(
   idValidator,
   getGameById
 );
+
 router.post(
   "/",
   authenticateToken(["user", "mod", "admin"]),
   gameValidator,
   addGame
 );
+
 router.patch(
   "/:id",
   authenticateToken(["user", "mod", "admin"]),
@@ -34,12 +36,12 @@ router.patch(
   gameValidator,
   updateGame
 );
+
 router.delete(
   "/:id",
   authenticateToken(["user", "mod", "admin"]),
   idValidator,
   deleteGame
 );
-router.get("/top-ventas", getGames);
 
 export default router;

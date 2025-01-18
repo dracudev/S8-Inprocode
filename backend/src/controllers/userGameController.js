@@ -29,10 +29,12 @@ export const getUsersForGame = async (req, res) => {
   try {
     const { gameId } = req.params;
     const users = await User.findAll({
+      attributes: ["id_user", "username"],
       include: {
         model: Game,
         where: { id_game: gameId },
         through: { attributes: [] },
+        attributes: [], // Exclude the game from the response
       },
     });
     res.status(200).json(users);
@@ -46,10 +48,12 @@ export const getGamesForUser = async (req, res) => {
   try {
     const { userId } = req.params;
     const games = await Game.findAll({
+      attributes: ["id_game", "title", "platform"],
       include: {
         model: User,
         where: { id_user: userId },
         through: { attributes: [] },
+        attributes: ["username"],
       },
     });
     res.status(200).json(games);

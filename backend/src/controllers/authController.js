@@ -7,7 +7,7 @@ import sendEmail from "../utils/email/sendEmail.js";
 import { validationResult } from "express-validator";
 import { serialize } from "cookie";
 
-const clietURL = process.env.CLIENT_URL;
+const clientURL = process.env.CLIENT_URL;
 
 export const register = async (req, res) => {
   try {
@@ -17,7 +17,7 @@ export const register = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { email, password } = req.body;
+    const { email, password, username } = req.body;
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return res.status(400).json({
@@ -32,16 +32,16 @@ export const register = async (req, res) => {
     );
 
     const newUser = new User({
-      email,
+      email: email,
       password: hashedPassword,
-      username,
+      username: username,
       roles: ["user"],
     });
     await newUser.save();
 
     // Generate an access token and save it in a secure token (httpOnly)
     const accessToken = jwt.sign(
-      { id_user: newUser.id_user, name: newUser.name },
+      { id_user: newUser.id_user, username: newUser.username },
       process.env.JWT_SECRET
     );
     const token = serialize("token", accessToken, {
@@ -88,6 +88,7 @@ export const login = async (req, res) => {
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
+    console.log("isPasswordValid", isPasswordValid);
     if (!isPasswordValid) {
       return res.status(401).json({
         code: -5,
@@ -97,7 +98,7 @@ export const login = async (req, res) => {
 
     // Generate an access token and save it in a secure token (httpOnly)
     const accessToken = jwt.sign(
-      { id_user: user.id_user, name: user.name, roles: user.roles },
+      { id_user: user.id_user, username: user.username, roles: user.roles },
       process.env.JWT_SECRET
     );
     const token = serialize("token", accessToken, {
@@ -156,7 +157,7 @@ export const forgotPassword = async (req, res) => {
       created_at: Date.now(),
     }).save();
 
-    const link = `${clietURL}/change-password?token=${resetToken}&id=${user.id_user}`;
+    const link = `${clientURL}/change-password?token=${resetToken}&id=${user.id_user}`;
 
     await sendEmail(
       user.email,

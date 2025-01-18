@@ -6,31 +6,31 @@ const insertInitialUserData = async () => {
   const userData = [
     {
       email: "mail1@mail.com",
-      password: "1234",
+      password: "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK", //dracudev123
       username: "User1",
       roles: ["user", "admin", "mod"],
     },
     {
       email: "mail2@mail.com",
-      password: "1234",
+      password: "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
       username: "User2",
       roles: ["user"],
     },
     {
       email: "mail3@mail.com",
-      password: "1234",
+      password: "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
       username: "User3",
       roles: ["user"],
     },
     {
       email: "mail4@mail.com",
-      password: "1234",
+      password: "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
       username: "User4",
       roles: ["user"],
     },
     {
       email: "mail5@mail.com",
-      password: "1234",
+      password: "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
       username: "User5",
       roles: ["user"],
     },

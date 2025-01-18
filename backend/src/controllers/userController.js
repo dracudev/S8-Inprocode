@@ -1,6 +1,5 @@
 import User from "../models/userModel.js";
 import fs from "fs";
-//https://www.bezkoder.com/node-js-express-file-upload/
 
 export const getUser = async (req, res) => {
   try {

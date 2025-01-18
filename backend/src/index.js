@@ -13,12 +13,12 @@ import { insertInitialUserData } from "./start_data.js";
 dotenv.config();
 
 const app = express();
-
+app.disable("x-powered-by");
 // Configura el middleware CORS para que peuda recibir solicitudes de POST, PUT, DELETE, UPDATE, etc.
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3306", "http://localhost:3001"],
+    origin: ["http://localhost:3306", "http://localhost:3000"],
   })
 );
 
@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // Para analizar datos de formularios en el cuerpo de la solicitud
 
 await testConnection();
-await insertInitialUserData();
+//!! await insertInitialUserData();
 
 // Configurar rutas
 app.use("/auth", authRoutes);
