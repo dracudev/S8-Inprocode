@@ -10,6 +10,7 @@ import {
 import { authenticateToken } from "../middlewares/authenticateToken.js";
 import { gameValidator } from "../validations/game.Validation.js";
 import { idValidator } from "../validations/generic.Validation.js";
+import { getUsersForGame } from "../controllers/userGameController.js";
 
 const router = Router();
 
@@ -21,6 +22,7 @@ router.get(
   idValidator,
   getGameById
 );
+router.get("/:gameId/users", getUsersForGame);
 
 router.post(
   "/",
