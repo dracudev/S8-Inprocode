@@ -14,26 +14,24 @@ import { getUsersForGame } from "../controllers/userGameController.js";
 
 const router = Router();
 
-// Rutas para obtener y modificar los datos de los usuarios
-router.get("/", authenticateToken(["user"]), getGames);
+router.get("/", authenticateToken(["user", "mod", "admin"]), getGames);
 router.get(
   "/:id",
   authenticateToken(["user", "mod", "admin"]),
   idValidator,
   getGameById
 );
-router.get("/:gameId/users", getUsersForGame);
-
-router.post(
-  "/",
+router.get(
+  "/:gameId/users",
   authenticateToken(["user", "mod", "admin"]),
-  gameValidator,
-  addGame
+  getUsersForGame
 );
+
+router.post("/", authenticateToken(["mod", "admin"]), gameValidator, addGame);
 
 router.patch(
   "/:id",
-  authenticateToken(["user", "mod", "admin"]),
+  authenticateToken(["mod", "admin"]),
   idValidator,
   gameValidator,
   updateGame
@@ -41,7 +39,7 @@ router.patch(
 
 router.delete(
   "/:id",
-  authenticateToken(["user", "mod", "admin"]),
+  authenticateToken(["mod", "admin"]),
   idValidator,
   deleteGame
 );

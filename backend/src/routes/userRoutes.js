@@ -10,17 +10,24 @@ import {
 
 const router = Router();
 
-// Rutas para obtener y modificar los datos de los usuarios
-router.get("/", authenticateToken(["user"]), getUser);
-router.get("/:userId/games", getGamesForUser);
+router.get("/", authenticateToken(["user", "mod", "admin"]), getUser);
+router.get(
+  "/:userId/games",
+  authenticateToken(["user", "mod", "admin"]),
+  getGamesForUser
+);
 
 router.post(
   "/upload-photo",
-  authenticateToken(["user"]),
+  authenticateToken(["user", "mod", "admin"]),
   uploadFileMiddleware,
   uploadPhoto
 );
-router.post("/add", addUserToGame);
-router.delete("/remove", removeUserFromGame);
+router.post("/add", authenticateToken(["user", "mod", "admin"]), addUserToGame);
+router.delete(
+  "/remove",
+  authenticateToken(["user", "mod", "admin"]),
+  removeUserFromGame
+);
 
 export default router;
