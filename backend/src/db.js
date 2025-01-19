@@ -16,10 +16,10 @@ const sequelize = new Sequelize(
 
 const syncroModel = async () => {
   try {
-    // "force: true" elimina la tabla si ya existe y la vuelve a crear
-    // "force: false" no hace nada si la tabla ya existe
-    // "alter: true" sincroniza las columnas y crea/elimina si es necesario
-    await sequelize.sync({ force: false }).then(() => {
+    // "force: true" deletes the table if it already exists
+    // "force: false" does not delete the table if it already exists
+    // "alter: true" synchronizes the table with the model and updates the table
+    await sequelize.sync({ force: true }).then(() => {
       console.log("Syncronized models with database");
     });
   } catch (error) {

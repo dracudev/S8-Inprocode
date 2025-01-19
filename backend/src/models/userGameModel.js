@@ -3,6 +3,7 @@ import { sequelize } from "../db.js";
 import User from "./userModel.js";
 import Game from "./gameModel.js";
 
+// Join table for User and Game
 const UserGame = sequelize.define(
   "UserGame",
   {

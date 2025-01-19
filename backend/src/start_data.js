@@ -9,6 +9,8 @@ const insertInitialUserData = async () => {
       password: "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK", //dracudev123
       username: "User1",
       roles: ["user", "admin", "mod"],
+      latitude: 40.416775,
+      longitude: -3.70379,
     },
     {
       email: "mail2@mail.com",
@@ -36,10 +38,9 @@ const insertInitialUserData = async () => {
     },
   ];
 
-  // Para actualizar todas las filas: updateOnDuplicate: Object.keys(User.rawAttributes)
-  // Para actualizar solo algunas columnas: updateOnDuplicate: ["email", "password"]
   await User.bulkCreate(userData, { ignoreDuplicates: true });
 
+  // Create a map of usernames to user ids
   const users = await User.findAll();
   const userMap = {};
   users.forEach((user) => {
@@ -47,7 +48,12 @@ const insertInitialUserData = async () => {
   });
 
   const gameData = [
-    { title: "TituloA", year: 1999, platform: ["PC"] },
+    {
+      title: "TituloA",
+      year: 1999,
+      platform: ["PC", "Xbox"],
+      genre: ["Action", "Puzzle"],
+    },
     { title: "TituloB", year: 1999, platform: ["PC"] },
     { title: "TituloC", year: 1475, platform: ["Xbox"] },
     { title: "TituloD", year: 2021, platform: ["Nintendo"] },
@@ -55,8 +61,6 @@ const insertInitialUserData = async () => {
   ];
 
   await Game.bulkCreate(gameData, { ignoreDuplicates: true });
-
-  const games = await Game.bulkCreate(gameData, { ignoreDuplicates: true });
 
   const userGameData = [
     { userId: userMap["User1"], gameId: 1 },
