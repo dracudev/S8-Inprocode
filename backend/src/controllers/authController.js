@@ -71,14 +71,12 @@ export const login = async (req, res) => {
   try {
     const errors = validationResult(req);
 
-    // If there are validation errors, respond with a 400 Bad Request status
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
     const { email, password } = req.body;
 
-    // Verify if the user exists in the database
     const user = await User.findOne({ where: { email } });
     if (!user) {
       return res.status(401).json({
@@ -134,7 +132,6 @@ export const forgotPassword = async (req, res) => {
   try {
     const errors = validationResult(req);
 
-    // If there are validation errors, respond with a 400 Bad Request status
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
@@ -169,7 +166,7 @@ export const forgotPassword = async (req, res) => {
       "email/template/requestResetPassword.handlebars"
     ).then(
       (response) => {
-        console.log("Resultado del envío del correo:", response);
+        console.log("Email response: ", response);
         res.status(200).json({
           code: 100,
           message: "Send Email OK",
@@ -202,7 +199,6 @@ export const changePassword = async (req, res) => {
   try {
     const errors = validationResult(req);
 
-    // If there are validation errors, respond with a 400 Bad Request status
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
@@ -239,7 +235,7 @@ export const changePassword = async (req, res) => {
 
     // Generate an access token and save it in a secure token (httpOnly)
     const accessToken = jwt.sign(
-      { id_user: user.id_user, name: user.name },
+      { id_user: user.id_user, username: user.username },
       process.env.JWT_SECRET
     );
     const token_jwt = serialize("token", accessToken, {
@@ -251,7 +247,6 @@ export const changePassword = async (req, res) => {
     });
     res.setHeader("Set-Cookie", token_jwt);
 
-    // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
       message: "User Detail",

@@ -5,15 +5,12 @@ export const getGames = async (req, res) => {
   try {
     const errors = validationResult(req);
 
-    // Si hay errores de validación, responde con un estado 400 Bad Request
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    // Obtener todos los usuarios de la base de datos
     const games = await Game.findAll();
 
-    // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
       message: "Games List",
@@ -23,7 +20,7 @@ export const getGames = async (req, res) => {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: "Ha ocurrido un error al obtener los libros",
+      message: "An error occurred while obtaining the games",
     });
   }
 };
@@ -32,23 +29,20 @@ export const getGameById = async (req, res) => {
   try {
     const errors = validationResult(req);
 
-    // Si hay errores de validación, responde con un estado 400 Bad Request
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
     const { id } = req.params;
 
-    // Buscar un usuario por su ID en la base de datos
     const game = await Game.findByPk(id);
     if (!game) {
       return res.status(404).json({
         code: -6,
-        message: "Libro no encontrado",
+        message: "Game Not Found",
       });
     }
 
-    // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
       message: "Game Detail",
@@ -58,7 +52,7 @@ export const getGameById = async (req, res) => {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: "Ha ocurrido un error al obtener el libro",
+      message: "An error occurred while obtaining the game",
     });
   }
 };
@@ -67,21 +61,22 @@ export const addGame = async (req, res) => {
   try {
     const errors = validationResult(req);
 
-    // Si hay errores de validación, responde con un estado 400 Bad Request
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, year } = req.body;
+    const { title, year, photo, platform, genre } = req.body;
     let newGame;
     try {
       newGame = await Game.create({
         title: title,
         year: year,
-        user_id: req.user.id_user,
+        photo: photo,
+        platform: platform,
+        genre: genre,
       });
     } catch (error) {
-      // Si hay un error de duplicación de clave única (por ejemplo, título duplicado)
+      // If the error is due to a duplicate title
       if (error.name === "SequelizeUniqueConstraintError") {
         res.status(400).json({
           code: -61,
@@ -97,7 +92,6 @@ export const addGame = async (req, res) => {
       });
     }
 
-    // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
       message: "Game Added Successfully",
@@ -107,7 +101,7 @@ export const addGame = async (req, res) => {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: "Ha ocurrido un error al añadir el juego",
+      message: "An error occurred while adding the game",
     });
   }
 };
@@ -116,29 +110,28 @@ export const updateGame = async (req, res) => {
   try {
     const errors = validationResult(req);
 
-    // Si hay errores de validación, responde con un estado 400 Bad Request
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
     const { id } = req.params;
-    const { title, year } = req.body;
+    const { title, year, photo, platform, genre } = req.body;
 
-    // Buscar un usuario por su ID en la base de datos
     const game = await Game.findByPk(id);
     if (!game) {
       return res.status(404).json({
         code: -3,
-        message: "Game no encontrado",
+        message: "Game not found",
       });
     }
 
-    // Actualizar el correo electrónico y la contraseña del usuario
     game.title = title;
     game.year = year;
+    game.photo = photo;
+    game.platform = platform;
+    game.genre = genre;
     await game.save();
 
-    // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
       message: "Game Updated Successfully",
@@ -148,7 +141,7 @@ export const updateGame = async (req, res) => {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: "Ha ocurrido un error al actualizar el juego",
+      message: "An error occurred while updating the game",
     });
   }
 };
@@ -157,17 +150,14 @@ export const deleteGame = async (req, res) => {
   try {
     const errors = validationResult(req);
 
-    // Si hay errores de validación, responde con un estado 400 Bad Request
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
     const { id } = req.params;
 
-    // Buscar un libro por su ID en la base de datos y eliminarlo
     const deletedGame = await Game.destroy({ where: { id_game: id } });
 
-    // Verificar si el libro fue encontrado y eliminado
     if (!deletedGame) {
       return res.status(404).json({
         code: -100,
@@ -175,7 +165,6 @@ export const deleteGame = async (req, res) => {
       });
     }
 
-    // Enviar una respuesta al cliente
     res.status(200).json({
       code: 1,
       message: "Game Deleted Successfully",
@@ -184,7 +173,7 @@ export const deleteGame = async (req, res) => {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: "Ha ocurrido un error al eliminar el juego",
+      message: "An error occurred while deleting the game",
     });
   }
 };

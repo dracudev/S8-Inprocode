@@ -9,6 +9,8 @@ export const getUser = async (req, res) => {
       username: req.user.usernamename,
       photo: req.user.photo,
       roles: req.user.roles,
+      latitud: req.user.latitud,
+      longitud: req.user.longitud,
       created_at: req.user.created_at,
       updated_at: req.user.updated_at,
     };
@@ -29,8 +31,7 @@ export const getUser = async (req, res) => {
 
 export const uploadPhoto = async (req, res) => {
   try {
-    const rutaArchivo = "./src/uploads/";
-    //await uploadFile(req, res);
+    const fileRoute = "./src/uploads/";
 
     if (req.file == undefined) {
       return res.status(400).json({
@@ -38,20 +39,19 @@ export const uploadPhoto = async (req, res) => {
         message: "Please upload a file.",
       });
     }
-
+    // Delete previous photo
     if (req.user.photo != null) {
-      console.log("Ruta:" + rutaArchivo + req.user.photo);
-      fs.access(rutaArchivo + req.user.photo, fs.constants.F_OK, (err) => {
+      console.log("Ruta:" + fileRoute + req.user.photo);
+      fs.access(fileRoute + req.user.photo, fs.constants.F_OK, (err) => {
         if (err) {
-          console.log("The file does not exist or cannot be accessed");
-          /*res.status(400).json({
+          res.status(400).json({
             code: -102,
-            message: 'The file does not exist or cannot be accessed',
-            error: err
-          });*/
+            message: "The file does not exist or cannot be accessed",
+            error: err,
+          });
         } else {
           // Delete file
-          fs.unlink(rutaArchivo + req.user.photo, (err) => {
+          fs.unlink(fileRoute + req.user.photo, (err) => {
             if (err) {
               console.error("Error deleting file: ", err);
               return res.status(500).json({
@@ -60,19 +60,19 @@ export const uploadPhoto = async (req, res) => {
                 error: err,
               });
             }
-            console.log("File deleted");
+            res.status(200).json({ code: 1, message: "File deleted" });
           });
         }
       });
-    } else console.log("No photo to delete");
+    } else {
+      return res.status(400).json({ code: -104, message: "No file to delete" });
+    }
 
-    console.log(
-      "Saved file: " + req.file.filename + " on id_user: " + req.user.id_user
-    );
     await User.update(
       { photo: req.file.filename },
       { where: { id_user: req.user.id_user } }
     );
+
     return res.status(200).json({
       code: 1,
       message: "Uploaded the file successfully: " + req.file.originalname,
@@ -80,7 +80,7 @@ export const uploadPhoto = async (req, res) => {
   } catch (err) {
     if (err.code == "LIMIT_FILE_SIZE") {
       return res.status(500).send({
-        message: "File size cannot be larger than 2MB!",
+        message: "File size cannot be larger than 2MB.",
       });
     }
 

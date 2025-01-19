@@ -2,7 +2,6 @@ import UserGame from "../models/userGameModel.js";
 import User from "../models/userModel.js";
 import Game from "../models/gameModel.js";
 
-// Add a user to a game
 export const addUserToGame = async (req, res) => {
   try {
     const { userId, gameId } = req.body;
@@ -13,7 +12,6 @@ export const addUserToGame = async (req, res) => {
   }
 };
 
-// Remove a user from a game
 export const removeUserFromGame = async (req, res) => {
   try {
     const { userId, gameId } = req.body;
@@ -24,7 +22,6 @@ export const removeUserFromGame = async (req, res) => {
   }
 };
 
-// Get all users for a game
 export const getUsersForGame = async (req, res) => {
   try {
     const { gameId } = req.params;
@@ -43,12 +40,11 @@ export const getUsersForGame = async (req, res) => {
   }
 };
 
-// Get all games for a user
 export const getGamesForUser = async (req, res) => {
   try {
     const { userId } = req.params;
     const games = await Game.findAll({
-      attributes: ["id_game", "title", "platform"],
+      attributes: ["id_game", "title", "platform", "genre"],
       include: {
         model: User,
         where: { id_user: userId },
