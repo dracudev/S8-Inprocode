@@ -1,6 +1,4 @@
 import { body, check } from "express-validator";
-//body():se utiliza para validar los campos en el cuerpo (body)
-//check():se utiliza para validar los campos en el cuerpo (body) y los parámetros de la ruta (params)
 
 export const gameValidator = [
   body("title")
@@ -11,8 +9,63 @@ export const gameValidator = [
     .isLength({ min: 5 })
     .withMessage("Title should be at least 5 characters"),
   body("year")
-    .exists()
-    .withMessage("Year is required")
-    .isInt({ min: 1000, max: new Date().getFullYear() }) // Establecer el rango de años válido
+    .isInt({ min: 1000, max: new Date().getFullYear() })
     .withMessage("Year should be a valid year"),
+  body("platform")
+    .exists()
+    .withMessage("Platform is required")
+    .isArray()
+    .withMessage("Platform should be an array")
+    .custom((platforms) => {
+      if (platforms.length === 0) {
+        throw new Error("Platform should have at least one value");
+      }
+      return true;
+    })
+    .custom((platforms) => {
+      const allowedPlatforms = [
+        "PC",
+        "PlayStation",
+        "Xbox",
+        "Nintendo",
+        "Mobile",
+      ];
+      const invalidPlatforms = platforms.filter(
+        (platform) => !allowedPlatforms.includes(platform)
+      );
+      if (invalidPlatforms.length > 0) {
+        throw new Error(`Invalid platform(s): ${invalidPlatforms.join(", ")}`);
+      }
+      return true;
+    }),
+  body("genre")
+    .exists()
+    .withMessage("Genre is required")
+    .isArray()
+    .withMessage("Genre should be an array")
+    .custom((genres) => {
+      if (genres.length === 0) {
+        throw new Error("Genre should have at least one value");
+      }
+      return true;
+    })
+    .custom((genres) => {
+      const allowedGenres = [
+        "Action",
+        "Adventure",
+        "RPG",
+        "Strategy",
+        "Simulation",
+        "Sports",
+        "Puzzle",
+        "Idle",
+      ];
+      const invalidGenres = genres.filter(
+        (genre) => !allowedGenres.includes(genre)
+      );
+      if (invalidGenres.length > 0) {
+        throw new Error(`Invalid genre(s): ${invalidGenres.join(", ")}`);
+      }
+      return true;
+    }),
 ];

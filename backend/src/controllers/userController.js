@@ -31,7 +31,7 @@ export const getUser = async (req, res) => {
 
 export const uploadPhoto = async (req, res) => {
   try {
-    const fileRoute = "./src/uploads/";
+    const fileRoute = "./src/uploads/users/";
 
     if (req.file == undefined) {
       return res.status(400).json({
