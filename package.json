@@ -2,8 +2,7 @@
   "name": "s8-inprocode",
   "workspaces": [
     "frontend",
-    "backend",
-    "shared"
+    "backend"
   ],
   "version": "1.0.0",
   "description": "React App with Node API",
