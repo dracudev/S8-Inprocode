@@ -1,0 +1,182 @@
+[
+  {
+    "email": "mail1@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User1",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=1",
+    "latitude": 41.382893,
+    "longitude": 2.177432
+  },
+  {
+    "email": "mail2@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User2",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=2",
+    "latitude": 41.376251,
+    "longitude": 2.160052
+  },
+  {
+    "email": "mail3@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User3",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=3",
+    "latitude": 41.391114,
+    "longitude": 2.170891
+  },
+  {
+    "email": "mail4@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User4",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=4",
+    "latitude": 41.403629,
+    "longitude": 2.189314
+  },
+  {
+    "email": "mail5@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User5",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=5",
+    "latitude": 41.385758,
+    "longitude": 2.175064
+  },
+  {
+    "email": "mail6@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User6",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=6",
+    "latitude": 41.394768,
+    "longitude": 2.159842
+  },
+  {
+    "email": "mail7@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User7",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=7",
+    "latitude": 41.377445,
+    "longitude": 2.137452
+  },
+  {
+    "email": "mail8@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User8",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=8",
+    "latitude": 41.364525,
+    "longitude": 2.138682
+  },
+  {
+    "email": "mail9@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User9",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=9",
+    "latitude": 41.374022,
+    "longitude": 2.184274
+  },
+  {
+    "email": "mail10@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User10",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=10",
+    "latitude": 41.421646,
+    "longitude": 2.187179
+  },
+  {
+    "email": "mail11@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User11",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=11",
+    "latitude": 41.396987,
+    "longitude": 2.176154
+  },
+  {
+    "email": "mail12@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User12",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=12",
+    "latitude": 41.404312,
+    "longitude": 2.191261
+  },
+  {
+    "email": "mail13@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User13",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=13",
+    "latitude": 41.378967,
+    "longitude": 2.149075
+  },
+  {
+    "email": "mail14@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User14",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=14",
+    "latitude": 41.369982,
+    "longitude": 2.181784
+  },
+  {
+    "email": "mail15@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User15",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=15",
+    "latitude": 41.425361,
+    "longitude": 2.152521
+  },
+  {
+    "email": "mail16@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User16",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=16",
+    "latitude": 41.382156,
+    "longitude": 2.185632
+  },
+  {
+    "email": "mail17@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User17",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=17",
+    "latitude": 41.368912,
+    "longitude": 2.169974
+  },
+  {
+    "email": "mail18@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User18",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=18",
+    "latitude": 41.411672,
+    "longitude": 2.196513
+  },
+  {
+    "email": "mail19@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User19",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=19",
+    "latitude": 41.400002,
+    "longitude": 2.180293
+  },
+  {
+    "email": "mail20@mail.com",
+    "password": "$2b$10$7vPrsms/jteRnzDWsZg1pek9SaJGn2NWhL/xDLdu1.HOC1e1lZMLK",
+    "username": "User20",
+    "roles": ["user"],
+    "photo": "https://i.pravatar.cc/150?img=20",
+    "latitude": 41.389761,
+    "longitude": 2.171942
+  }
+]

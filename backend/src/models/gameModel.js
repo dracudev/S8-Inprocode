@@ -11,6 +11,20 @@ const allowedGenres = [
   "Sports",
   "Puzzle",
   "Idle",
+  "FPS",
+  "VR",
+  "Roguelike",
+  "Sci-Fi",
+  "Racing",
+  "Open World",
+  "TPS",
+  "Platformer",
+  "Multiplayer",
+  "Social",
+  "Shooter",
+  "Battle Royale",
+  "Party",
+  "Augmented Reality",
 ];
 
 const Game = sequelize.define("Game", {

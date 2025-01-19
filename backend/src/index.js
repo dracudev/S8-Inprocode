@@ -12,7 +12,7 @@ dotenv.config();
 
 const app = express();
 app.disable("x-powered-by");
-// Configura el middleware CORS para que peuda recibir solicitudes de POST, PUT, DELETE, UPDATE, etc.
+
 app.use(
   cors({
     credentials: true,
@@ -20,26 +20,26 @@ app.use(
   })
 );
 
-//header and populate req.cookies with an object keyed by the cookie names
+//Middleware for parsing cookies
 app.use(cookieParser());
 
-// Middleware para analizar el cuerpo de las solicitudes con formato JSON
+// Middleware for parsing application/json
 app.use(express.json());
 
-// Middleware para analizar el cuerpo de las solicitudes con datos de formulario
-app.use(express.urlencoded({ extended: true })); // Para analizar datos de formularios en el cuerpo de la solicitud
+// Middleware for parsing application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
 await testConnection();
-await insertInitialUserData();
+// Uncomment the line below to insert initial data to the database
+// await insertInitialUserData();
 
-// Configurar rutas
+// Routes
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/game", gameRoutes);
-
 app.use("/test", testRoutes);
 
-// Iniciar el servidor
+// Server
 const PORT = process.env.PORT ?? 3000;
 
 app.listen(PORT, () => {
