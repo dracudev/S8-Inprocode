@@ -1,20 +1,19 @@
 import "./App.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { Routes, Route } from "react-router-dom";
 
-interface AppProps {
-  children: React.ReactNode;
-}
-
-const App: React.FC<AppProps> = ({ children }) => {
+const App = () => {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <main>
-        <SidebarTrigger />
-        {children}
-      </main>
-    </SidebarProvider>
+    <Routes>
+      <SidebarProvider>
+        <AppSidebar />
+        <main>
+          <SidebarTrigger />
+          <Route>{/* Routes/pages go here */}</Route>
+        </main>
+      </SidebarProvider>
+    </Routes>
   );
 };
 
