@@ -268,8 +268,8 @@ export const changePassword = async (req, res) => {
 };
 
 export const logout = async (req, res) => {
-  const { cookies } = req;
-  const jwt = cookies.token;
+  // const { cookies } = req;
+  // const jwt = cookies.token;
 
   const token = serialize("token", null, {
     httpOnly: true,

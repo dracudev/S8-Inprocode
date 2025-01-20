@@ -7,7 +7,7 @@ import gameRoutes from "./routes/gameRoutes.js";
 import testRoutes from "./routes/testRoutes.js";
 import { testConnection } from "./db.js";
 import dotenv from "dotenv";
-import { insertInitialUserData } from "./start_data.js";
+// import { insertInitialUserData } from "./start_data.js";
 dotenv.config();
 
 const app = express();

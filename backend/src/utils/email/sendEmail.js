@@ -31,7 +31,7 @@ const sendEmail = async (email, subject, payload, template) => {
       if (error) {
         reject(error);
       } else {
-        resolve("OK");
+        resolve("OK", info); // info is an object with the message id and other details
       }
     });
   });

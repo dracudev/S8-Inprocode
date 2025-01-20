@@ -1,4 +1,4 @@
-import { body, check } from "express-validator";
+import { body } from "express-validator";
 
 export const gameValidator = [
   body("title")
