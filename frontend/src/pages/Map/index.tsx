@@ -1,7 +1,7 @@
 const Map = () => {
   return (
     <div>
-      <h1>Map</h1>
+      <h1 className="text-6xl">Map</h1>
     </div>
   );
 };
