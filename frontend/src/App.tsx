@@ -5,6 +5,8 @@ import Home from "@/pages/Home";
 import Chart from "@/pages/Chart";
 import Calendar from "@/pages/Calendar";
 import Map from "@/pages/Map";
+import Profile from "@/pages/Profile";
+import Games from "@/pages/Games";
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
         <Route path="/chart" element={<Chart />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/games" element={<Games />} />
       </Route>
     </Routes>
   );
