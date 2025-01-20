@@ -27,7 +27,6 @@
     "lint": "eslint ./frontend ./backend"
   },
   "devDependencies": {
-    "@eslint/js": "^9.18.0",
     "concurrently": "^9.1.2"
   }
 }
