@@ -29,22 +29,22 @@ import { Link } from "react-router-dom";
 const items = [
   {
     title: "Home",
-    url: "#",
+    url: "/",
     icon: Home,
   },
   {
     title: "Chart",
-    url: "#",
+    url: "/chart",
     icon: LucideSquareGanttChart,
   },
   {
     title: "Calendar",
-    url: "#",
+    url: "calendar",
     icon: Calendar,
   },
   {
     title: "Map",
-    url: "#",
+    url: "map",
     icon: LucideMapPinned,
   },
 ];
@@ -72,12 +72,12 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="p-0 bg-zinc-900 text-white">
+      <SidebarFooter className=" bg-zinc-900 text-white">
         <SidebarMenu>
-          <SidebarMenuItem className="">
+          <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidebarMenuButton className="group-data-[collapsible=icon]:ml-2">
+                <SidebarMenuButton>
                   <User2 /> Username
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
@@ -86,13 +86,17 @@ export function AppSidebar() {
                 side="top"
                 className="w-[--radix-popper-anchor-width]"
               >
-                <DropdownMenuItem>
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Games</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
+                <Link to={"/profile"}>
+                  <DropdownMenuItem className="focus:bg-zinc-800 focus:text-slate-50 cursor-pointer">
+                    <span>Account</span>
+                  </DropdownMenuItem>
+                </Link>
+                <Link to={"/games"}>
+                  <DropdownMenuItem className="focus:bg-zinc-800 focus:text-slate-50 cursor-pointer">
+                    <span>Games</span>
+                  </DropdownMenuItem>
+                </Link>
+                <DropdownMenuItem className="focus:bg-zinc-800 focus:text-slate-50 cursor-pointer">
                   <span>Sign out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
