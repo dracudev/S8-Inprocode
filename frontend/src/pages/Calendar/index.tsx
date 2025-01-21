@@ -1,4 +1,4 @@
-import EventCalendar from "@/components/calendar";
+import EventCalendar from "@/components/Calendar/index.tsx";
 
 const Calendar = () => {
   return (
