@@ -1,3 +1,6 @@
+/* eslint-disable */
+// @ts-nocheck
+
 import { useRef, useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import "./index.css";

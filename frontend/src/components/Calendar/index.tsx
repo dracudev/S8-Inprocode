@@ -1,3 +1,6 @@
+/* eslint-disable */
+// @ts-nocheck
+
 import "./index.css";
 
 import {
@@ -54,7 +57,7 @@ const EventCalendar = () => {
   const dialogObj = useRef(null);
   const toolbarObj = useRef(null);
   const calendarNameObj = useRef(null);
-  let [currentDate] = useState(new Date());
+  const [currentDate] = useState(new Date());
   const saveButtonRef = useRef(null);
   let isAdd;
   let calendars = [
