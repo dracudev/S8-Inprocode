@@ -19,7 +19,9 @@ const Home = () => {
         <footer className="flex items-center justify-center m-3">
           <div className="flex-col flex items-center ">
             {" "}
-            <Button className=" bg-slate-100 text-zinc-800 mb-3">Log In</Button>
+            <Button className=" bg-slate-100 text-zinc-800 mb-3 hover:bg-zinc-800 hover:text-white">
+              Log In
+            </Button>
             <p className="text-sm">Dont have an account? Create one now!</p>
           </div>
         </footer>
