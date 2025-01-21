@@ -1,7 +1,7 @@
-import BarChart from "@/components/charts/BarChart";
-import LineChart from "@/components/charts/LineChart";
-import PieChart from "@/components/charts/PieChart";
-import RadarChart from "@/components/charts/RadarChart";
+import BarChart from "@/components/charts/bar-chart";
+import LineChart from "@/components/charts/line-chart";
+import PieChart from "@/components/charts/pie-chart";
+import RadarChart from "@/components/charts/radar-chart";
 
 const Chart = () => {
   return (
