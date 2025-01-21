@@ -1,9 +1,7 @@
+import MapBox from "@/components/Map";
+
 const Map = () => {
-  return (
-    <div>
-      <h1 className="text-6xl">Map</h1>
-    </div>
-  );
+  return <MapBox></MapBox>;
 };
 
 export default Map;
