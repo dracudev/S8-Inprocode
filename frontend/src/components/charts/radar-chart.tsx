@@ -57,14 +57,14 @@ const RadarChart = () => {
           translateY: -40,
           itemWidth: 80,
           itemHeight: 20,
-          itemTextColor: "#999",
+          itemTextColor: "#fff",
           symbolSize: 12,
           symbolShape: "circle",
           effects: [
             {
               on: "hover",
               style: {
-                itemTextColor: "#000",
+                itemTextColor: "#fff",
               },
             },
           ],

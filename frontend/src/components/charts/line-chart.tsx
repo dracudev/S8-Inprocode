@@ -318,6 +318,7 @@ const LineChart: React.FC = () => {
         {
           anchor: "bottom-right",
           direction: "column",
+          itemTextColor: "#fff",
           justify: false,
           translateX: 100,
           translateY: 0,

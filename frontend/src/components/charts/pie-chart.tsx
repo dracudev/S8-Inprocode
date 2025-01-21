@@ -48,7 +48,7 @@ const PieChart: React.FC = () => {
         modifiers: [["darker", 0.2]],
       }}
       arcLinkLabelsSkipAngle={10}
-      arcLinkLabelsTextColor="#333333"
+      arcLinkLabelsTextColor="#fff"
       arcLinkLabelsThickness={2}
       arcLinkLabelsColor={{ from: "color" }}
       arcLabelsSkipAngle={10}
@@ -131,12 +131,12 @@ const PieChart: React.FC = () => {
           anchor: "bottom",
           direction: "row",
           justify: false,
-          translateX: 0,
+          translateX: 30,
           translateY: 56,
-          itemsSpacing: 0,
+          itemsSpacing: -35,
           itemWidth: 100,
           itemHeight: 18,
-          itemTextColor: "#999",
+          itemTextColor: "#fff",
           itemDirection: "left-to-right",
           itemOpacity: 1,
           symbolSize: 18,

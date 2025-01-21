@@ -1,0 +1,19 @@
+.chart-container {
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 50vh; /* Adjust the height as needed */
+    width: 100%;
+  }
+
+  .xh-full {
+    height: auto;
+  }
+
+  .xw-full {
+    width: 100%;
+  }
+}

@@ -5,17 +5,17 @@ import RadarChart from "@/components/charts/radar-chart";
 
 const Chart = () => {
   return (
-    <div className="h-full w-full grid grid-cols-2 grid-row-2 gap-2">
-      <div className="h-full w-full">
+    <div className="h-full w-full grid  md:grid-cols-2 md:grid-row-2 gap-2 overflow-auto">
+      <div className="md:h-full md:w-full h-[50vh] w-full">
         <PieChart></PieChart>
       </div>
-      <div className="h-full w-full">
+      <div className="md:h-full md:w-full h-[50vh] w-full">
         <LineChart></LineChart>
       </div>
-      <div className="h-full w-full">
+      <div className="md:h-full md:w-full h-[50vh] w-full">
         <BarChart></BarChart>
       </div>
-      <div className="h-full w-full">
+      <div className="md:h-full md:w-full h-[50vh] w-full">
         <RadarChart></RadarChart>
       </div>
     </div>

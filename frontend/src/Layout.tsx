@@ -8,7 +8,7 @@ const Layout = () => {
       <AppSidebar />
       <main className="flex flex-col w-full h-screen">
         <SidebarTrigger />
-        <div className="flex items-center w-full h-full overflow-hidden">
+        <div className="flex items-center w-full h-full">
           <Outlet />
         </div>
       </main>
