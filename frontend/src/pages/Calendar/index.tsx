@@ -1,7 +1,9 @@
+import EventCalendar from "@/components/calendar";
+
 const Calendar = () => {
   return (
-    <div>
-      <h1 className="text-6xl">Calendar</h1>
+    <div className="h-full w-full">
+      <EventCalendar></EventCalendar>
     </div>
   );
 };

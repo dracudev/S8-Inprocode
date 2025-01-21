@@ -9,9 +9,7 @@ const Layout = () => {
       <main className="flex flex-col w-full h-screen">
         <SidebarTrigger />
         <div className="flex items-center w-full h-full overflow-hidden">
-          <div className="bg-zinc-900 shadow-xl w-full h-[97%] m-5 rounded-md flex ">
-            <Outlet />
-          </div>
+          <Outlet />
         </div>
       </main>
     </SidebarProvider>
