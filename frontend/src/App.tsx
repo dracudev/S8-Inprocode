@@ -5,8 +5,8 @@ import Home from "@/pages/Home";
 import Chart from "@/pages/Chart";
 import Calendar from "@/pages/Calendar";
 import Map from "@/pages/Map";
-import Profile from "@/pages/Profile";
-import Games from "@/pages/Games";
+import Profile from "@/pages//User/Profile";
+import Games from "@/pages/User/Games";
 
 const App = () => {
   return (

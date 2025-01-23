@@ -592,7 +592,11 @@ const EventCalendar = () => {
             id="toolbar"
             clicked={onToolbarItemClicked}
             cssClass="event-calendar-toolbar"
-            style={{ border: "1px solid #e5e5e5", marginBottom: "8px" }}
+            style={{
+              border: "1px solid #e5e5e5",
+              marginBottom: "8px",
+              borderRadius: "0px",
+            }}
           >
             <ItemsDirective>
               <ItemDirective

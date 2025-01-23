@@ -44,6 +44,7 @@
     "@syncfusion/ej2-react-schedule": "28.1.39",
     "@syncfusion/ej2-schedule": "28.1.39",
     "@syncfusion/ej2-splitbuttons": "28.1.41",
+    "ag-grid-react": "^33.0.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.473.0",
