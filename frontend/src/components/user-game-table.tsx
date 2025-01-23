@@ -12,7 +12,6 @@ import {
 } from "ag-grid-community";
 import { themeQuartz } from "ag-grid-community";
 
-// to use myTheme in an application, pass it to the theme grid option
 const myTheme = themeQuartz.withParams({
   accentColor: "#AF22F2",
   backgroundColor: "#1f2836",
@@ -30,25 +29,6 @@ const myTheme = themeQuartz.withParams({
 });
 
 ModuleRegistry.registerModules([AllCommunityModule]);
-
-const CustomButtonComponent = () => {
-  const eGui = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const eButton = document.createElement("button");
-    eButton.className = "btn-simple";
-    eButton.textContent = "Push Me!";
-    const eventListener = () => alert("clicked");
-    eButton.addEventListener("click", eventListener);
-    eGui.current?.appendChild(eButton);
-
-    return () => {
-      eButton.removeEventListener("click", eventListener);
-    };
-  }, []);
-
-  return <div ref={eGui}></div>;
-};
 
 const UserGameTable: React.FC = () => {
   const gridDiv = useRef<HTMLDivElement>(null);
@@ -78,7 +58,7 @@ const UserGameTable: React.FC = () => {
             flex: 1,
           },
           { field: "electric", flex: 1 },
-          { field: "button", cellRenderer: CustomButtonComponent, flex: 1 },
+          // { field: "button", ButtonComponent, flex: 1 },
         ],
         theme: myTheme,
       };
