@@ -13,7 +13,8 @@
     "api",
     "calendar",
     "chart",
-    "map"
+    "map",
+    "CRUD"
   ],
   "license": "ISC",
   "author": "Javier Andreu - dracudev",
@@ -23,6 +24,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:frontend": "npm --workspace frontend start",
     "start:backend": "npm --workspace backend start",
+    "dev:frontend": "npm --workspace frontend run dev",
+    "dev:backend": "npm --workspace backend run dev",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
     "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "lint": "eslint ./frontend ./backend"
   },

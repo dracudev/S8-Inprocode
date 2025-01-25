@@ -11,6 +11,10 @@ import {
   createGrid,
 } from "ag-grid-community";
 import { themeQuartz } from "ag-grid-community";
+import useFetch from "@/hooks/use-fetch";
+import { Game } from "@/types/types";
+import defaultImage from "@/assets/default.jpg";
+import useGameFetch from "@/hooks/use-fetch-game-img";
 
 const myTheme = themeQuartz.withParams({
   accentColor: "#AF22F2",
@@ -31,41 +35,60 @@ const myTheme = themeQuartz.withParams({
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 const UserGameTable: React.FC = () => {
+  const { data, loading, error } = useFetch<DataType[]>("/games");
+  const parsedData: Game[] = data?.data.map((game) => ({
+    photo: game.photo ? encodeURI(game.photo) : defaultImage,
+    title: game.title,
+    platform: game.platform.join(", "),
+    genre: game.genre.join(", "),
+  }));
+  console.log(parsedData);
   const gridDiv = useRef<HTMLDivElement>(null);
   let gridApi: GridApi;
 
   useEffect(() => {
-    if (gridDiv.current) {
+    if (data && gridDiv.current) {
       const gridOptions: GridOptions = {
-        rowData: [
-          { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-          { make: "Ford", model: "F-Series", price: 33850, electric: false },
-          { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-          { make: "Mercedes", model: "EQA", price: 48890, electric: true },
-          { make: "Fiat", model: "500", price: 15774, electric: false },
-          { make: "Nissan", model: "Juke", price: 20675, electric: false },
-        ],
+        rowData: parsedData,
         columnDefs: [
           {
-            headerName: "Make & Model",
-            valueGetter: (p: ValueGetterParams) =>
-              p.data.make + " " + p.data.model,
+            headerName: "Photo",
+            field: "photo",
+            cellRenderer: (params) =>
+              `<div style="width:100%; height:100%;">
+            <img src="${params.value}" alt="Game Photo" style="height:100%;width:auto%; objectFit:cover"/>
+            </div>`,
             flex: 2,
           },
           {
-            field: "price",
-            valueFormatter: (p) => "£" + Math.floor(p.value).toLocaleString(),
+            headerName: "Title",
+            field: "title",
+            flex: 2,
+          },
+          {
+            headerName: "Platform",
+            field: "platform",
             flex: 1,
           },
-          { field: "electric", flex: 1 },
-          // { field: "button", ButtonComponent, flex: 1 },
+          {
+            headerName: "Genre",
+            field: "genre",
+            flex: 1,
+          },
         ],
         theme: myTheme,
+        defaultColDef: {
+          resizable: true,
+          sortable: true,
+          filter: true,
+        },
+        animateRows: true,
+        rowHeight: 150,
       };
 
       gridApi = createGrid(gridDiv.current, gridOptions);
     }
-  }, []);
+  }, [parsedData]);
 
   return (
     <div

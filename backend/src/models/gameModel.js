@@ -43,7 +43,7 @@ const Game = sequelize.define("Game", {
     //allowNull defaults to true
   },
   photo: {
-    type: DataTypes.STRING(30),
+    type: DataTypes.STRING(500),
   },
   platform: {
     type: DataTypes.STRING(30),
