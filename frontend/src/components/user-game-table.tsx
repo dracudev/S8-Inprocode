@@ -1,20 +1,19 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   AllCommunityModule,
   GridApi,
   GridOptions,
   ModuleRegistry,
-  ValueGetterParams,
   createGrid,
 } from "ag-grid-community";
 import { themeQuartz } from "ag-grid-community";
 import useFetch from "@/hooks/use-fetch";
 import { Game } from "@/types/types";
 import defaultImage from "@/assets/default.jpg";
-import useGameFetch from "@/hooks/use-fetch-game-img";
+// import useGameFetch from "@/hooks/use-fetch-game-img";
 
 const myTheme = themeQuartz.withParams({
   accentColor: "#AF22F2",
@@ -34,8 +33,10 @@ const myTheme = themeQuartz.withParams({
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
+// TODO: Define images for each game
+
 const UserGameTable: React.FC = () => {
-  const { data, loading, error } = useFetch<DataType[]>("/games");
+  const { data } = useFetch<Game[]>("/games");
   const parsedData: Game[] = data?.data.map((game) => ({
     photo: game.photo ? encodeURI(game.photo) : defaultImage,
     title: game.title,
@@ -63,7 +64,7 @@ const UserGameTable: React.FC = () => {
           {
             headerName: "Title",
             field: "title",
-            flex: 2,
+            flex: 1,
           },
           {
             headerName: "Platform",
