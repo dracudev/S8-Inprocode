@@ -59,6 +59,20 @@ export const gameValidator = [
         "Sports",
         "Puzzle",
         "Idle",
+        "FPS",
+        "VR",
+        "Roguelike",
+        "Sci-Fi",
+        "Racing",
+        "Open World",
+        "TPS",
+        "Platformer",
+        "Multiplayer",
+        "Social",
+        "Shooter",
+        "Battle Royale",
+        "Party",
+        "Augmented Reality",
       ];
       const invalidGenres = genres.filter(
         (genre) => !allowedGenres.includes(genre)
