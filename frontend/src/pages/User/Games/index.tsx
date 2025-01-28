@@ -1,4 +1,4 @@
-import UserGameTable from "@/components/user-game-table";
+import UserGameTable from "@/components/crud-table/user-game-table";
 
 const Games = () => {
   return <UserGameTable />;

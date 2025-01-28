@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import gameRoutes from "./routes/gameRoutes.js";
+import gamesRoutes from "./routes/gamesRoutes.js";
 import testRoutes from "./routes/testRoutes.js";
 import { testConnection } from "./db.js";
 import dotenv from "dotenv";
@@ -36,7 +36,7 @@ await insertInitialUserData();
 // Routes
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
-app.use("/games", gameRoutes);
+app.use("/games", gamesRoutes);
 app.use("/test", testRoutes);
 
 // Server
