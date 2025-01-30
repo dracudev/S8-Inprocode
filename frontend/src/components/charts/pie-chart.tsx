@@ -1,5 +1,5 @@
 import { ResponsivePie } from "@nivo/pie";
-import useFetch from "@/hooks/use-fetch";
+import useFetch from "@/hooks/use-fetch-game";
 import { Game } from "@/types/types";
 
 const PieChart: React.FC = () => {

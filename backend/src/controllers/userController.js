@@ -1,30 +1,46 @@
 import User from "../models/userModel.js";
 import fs from "fs";
 
-export const getUser = async (req, res) => {
+export const getUserById = async (req, res) => {
   try {
-    const user_data = {
-      id_user: req.user.id_user,
-      email: req.user.email,
-      username: req.user.usernamename,
-      photo: req.user.photo,
-      roles: req.user.roles,
-      latitud: req.user.latitud,
-      longitud: req.user.longitud,
-      created_at: req.user.created_at,
-      updated_at: req.user.updated_at,
-    };
+    const { id } = req.params;
+
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({
+        code: -6,
+        message: "User Not Found",
+      });
+    }
 
     res.status(200).json({
       code: 1,
       message: "User Detail",
-      data: user_data,
+      data: user,
     });
   } catch (error) {
     console.error(error);
     res.status(500).json({
       code: -100,
-      message: "An error occurred while obtaining the USER",
+      message: "An error occurred while obtaining the user",
+    });
+  }
+};
+
+export const getUsers = async (req, res) => {
+  try {
+    const users = await User.findAll();
+
+    res.status(200).json({
+      code: 1,
+      message: "Games List",
+      data: users,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      code: -100,
+      message: "An error occurred while obtaining the users",
     });
   }
 };

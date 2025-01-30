@@ -13,6 +13,7 @@ export interface User {
   email: string;
   password: string;
   photo: string | null;
+  created_at: string;
 }
 
 export type PartialGame = Partial<Game>;

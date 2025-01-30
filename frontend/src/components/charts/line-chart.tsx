@@ -1,281 +1,62 @@
+import useFetchUsers from "@/hooks/use-fetch-user";
 import { ResponsiveLine } from "@nivo/line";
 
 const LineChart: React.FC = () => {
-  const data = [
+  const { data, loading, error } = useFetchUsers("/user");
+  data.forEach((user) => {
+    const date = new Date(user.created_at);
+    console.log(
+      `created_at: ${user.created_at}, parsed month: ${date.getMonth()}`
+    );
+  });
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const monthlyUserCounts = data.reduce((acc, user) => {
+    const month = new Date(user.created_at).getMonth();
+    acc[month] = (acc[month] || 0) + 1;
+    return acc;
+  }, Array(12).fill(0));
+
+  const chartData = [
     {
-      id: "japan",
+      id: "users",
       color: "hsl(285, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 71,
-        },
-        {
-          x: "helicopter",
-          y: 32,
-        },
-        {
-          x: "boat",
-          y: 263,
-        },
-        {
-          x: "train",
-          y: 244,
-        },
-        {
-          x: "subway",
-          y: 290,
-        },
-        {
-          x: "bus",
-          y: 166,
-        },
-        {
-          x: "car",
-          y: 14,
-        },
-        {
-          x: "moto",
-          y: 175,
-        },
-        {
-          x: "bicycle",
-          y: 288,
-        },
-        {
-          x: "horse",
-          y: 66,
-        },
-        {
-          x: "skateboard",
-          y: 93,
-        },
-        {
-          x: "others",
-          y: 132,
-        },
-      ],
-    },
-    {
-      id: "france",
-      color: "hsl(235, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 4,
-        },
-        {
-          x: "helicopter",
-          y: 75,
-        },
-        {
-          x: "boat",
-          y: 175,
-        },
-        {
-          x: "train",
-          y: 2,
-        },
-        {
-          x: "subway",
-          y: 38,
-        },
-        {
-          x: "bus",
-          y: 31,
-        },
-        {
-          x: "car",
-          y: 211,
-        },
-        {
-          x: "moto",
-          y: 225,
-        },
-        {
-          x: "bicycle",
-          y: 155,
-        },
-        {
-          x: "horse",
-          y: 230,
-        },
-        {
-          x: "skateboard",
-          y: 65,
-        },
-        {
-          x: "others",
-          y: 132,
-        },
-      ],
-    },
-    {
-      id: "us",
-      color: "hsl(244, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 37,
-        },
-        {
-          x: "helicopter",
-          y: 224,
-        },
-        {
-          x: "boat",
-          y: 92,
-        },
-        {
-          x: "train",
-          y: 72,
-        },
-        {
-          x: "subway",
-          y: 295,
-        },
-        {
-          x: "bus",
-          y: 159,
-        },
-        {
-          x: "car",
-          y: 6,
-        },
-        {
-          x: "moto",
-          y: 202,
-        },
-        {
-          x: "bicycle",
-          y: 6,
-        },
-        {
-          x: "horse",
-          y: 57,
-        },
-        {
-          x: "skateboard",
-          y: 145,
-        },
-        {
-          x: "others",
-          y: 137,
-        },
-      ],
-    },
-    {
-      id: "germany",
-      color: "hsl(347, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 174,
-        },
-        {
-          x: "helicopter",
-          y: 106,
-        },
-        {
-          x: "boat",
-          y: 180,
-        },
-        {
-          x: "train",
-          y: 238,
-        },
-        {
-          x: "subway",
-          y: 89,
-        },
-        {
-          x: "bus",
-          y: 76,
-        },
-        {
-          x: "car",
-          y: 186,
-        },
-        {
-          x: "moto",
-          y: 54,
-        },
-        {
-          x: "bicycle",
-          y: 206,
-        },
-        {
-          x: "horse",
-          y: 242,
-        },
-        {
-          x: "skateboard",
-          y: 17,
-        },
-        {
-          x: "others",
-          y: 89,
-        },
-      ],
-    },
-    {
-      id: "norway",
-      color: "hsl(104, 70%, 50%)",
-      data: [
-        {
-          x: "plane",
-          y: 36,
-        },
-        {
-          x: "helicopter",
-          y: 28,
-        },
-        {
-          x: "boat",
-          y: 279,
-        },
-        {
-          x: "train",
-          y: 261,
-        },
-        {
-          x: "subway",
-          y: 228,
-        },
-        {
-          x: "bus",
-          y: 278,
-        },
-        {
-          x: "car",
-          y: 198,
-        },
-        {
-          x: "moto",
-          y: 66,
-        },
-        {
-          x: "bicycle",
-          y: 219,
-        },
-        {
-          x: "horse",
-          y: 266,
-        },
-        {
-          x: "skateboard",
-          y: 81,
-        },
-        {
-          x: "others",
-          y: 65,
-        },
-      ],
+      data: monthNames.map((month, index) => ({
+        x: month,
+        y: monthlyUserCounts[index],
+      })),
     },
   ];
+
+  if (loading)
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  if (error)
+    return (
+      <div className="w-full h-full flex items-center justify-center text-red-500">
+        Error: {error}
+      </div>
+    );
+
   return (
     <ResponsiveLine
-      data={data}
+      data={chartData}
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       xScale={{ type: "point" }}
       yScale={{
@@ -292,7 +73,7 @@ const LineChart: React.FC = () => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "transportation",
+        legend: "month",
         legendOffset: 36,
         legendPosition: "middle",
         truncateTickAt: 0,
@@ -341,6 +122,25 @@ const LineChart: React.FC = () => {
           ],
         },
       ]}
+      theme={{
+        axis: {
+          ticks: {
+            text: {
+              fill: "#ffffff",
+            },
+          },
+          legend: {
+            text: {
+              fill: "#ffffff",
+            },
+          },
+        },
+        tooltip: {
+          container: {
+            color: "#000000",
+          },
+        },
+      }}
     />
   );
 };

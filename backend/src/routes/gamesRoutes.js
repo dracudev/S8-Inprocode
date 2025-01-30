@@ -16,17 +16,8 @@ const router = Router();
 
 // router.get("/", authenticateToken(["user", "mod", "admin"]), getGames);
 router.get("/", getGames);
-router.get(
-  "/:id",
-
-  idValidator,
-  getGameById
-);
-router.get(
-  "/:gameId/users",
-
-  getUsersForGame
-);
+router.get("/:id", idValidator, getGameById);
+router.get("/:gameId/users", getUsersForGame);
 
 router.post("/", gameValidator, addGame);
 

@@ -1,4 +1,4 @@
-import useFetch from "@/hooks/use-fetch";
+import useFetch from "@/hooks/use-fetch-game";
 import { Game } from "@/types/types";
 import { ResponsiveRadar } from "@nivo/radar";
 

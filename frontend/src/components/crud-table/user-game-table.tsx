@@ -16,7 +16,7 @@ import {
 import { myTheme } from "./my-theme";
 import Modal from "./modal";
 import { handleCreate, handleUpdate } from "@/utils/crud";
-import useFetch from "@/hooks/use-fetch";
+import useFetch from "@/hooks/use-fetch-game";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 

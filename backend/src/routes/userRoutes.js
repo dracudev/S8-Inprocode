@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { getUser, uploadPhoto } from "../controllers/userController.js";
+import {
+  getUserById,
+  getUsers,
+  uploadPhoto,
+} from "../controllers/userController.js";
 // import { authenticateToken } from "../middlewares/authenticateToken.js";
 import { uploadFileMiddleware } from "../middlewares/upload.js";
 import {
@@ -9,8 +13,8 @@ import {
 } from "../controllers/userGameController.js";
 
 const router = Router();
-
-router.get("/", getUser);
+router.get("/", getUsers);
+router.get("/:id", getUserById);
 router.get("/:userId/games", getGamesForUser);
 
 router.post("/upload-photo", uploadFileMiddleware, uploadPhoto);
