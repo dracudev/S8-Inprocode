@@ -11,6 +11,5 @@
       "src": "/(.*)",
       "dest": "src/index.js"
     }
-  ],
-  "includeFiles": ["src/data/users.json", "src/data/games.json"]
+  ]
 }
