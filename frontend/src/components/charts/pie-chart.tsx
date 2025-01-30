@@ -57,6 +57,18 @@ const PieChart: React.FC = () => {
         from: "color",
         modifiers: [["darker", 2]],
       }}
+      tooltip={({ datum }) => (
+        <div
+          style={{
+            color: "black",
+            background: "white",
+            padding: "5px",
+            borderRadius: "3px",
+          }}
+        >
+          <strong>{datum.id}</strong>: {datum.value}
+        </div>
+      )}
       defs={[
         {
           id: "dots",
@@ -80,51 +92,33 @@ const PieChart: React.FC = () => {
       fill={[
         {
           match: {
-            id: "ruby",
+            id: "Mobile",
           },
           id: "dots",
         },
         {
           match: {
-            id: "c",
+            id: "PC",
+          },
+          id: "lines",
+        },
+        {
+          match: {
+            id: "Xbox",
           },
           id: "dots",
         },
         {
           match: {
-            id: "go",
+            id: "Nintendo",
+          },
+          id: "lines",
+        },
+        {
+          match: {
+            id: "PlayStation",
           },
           id: "dots",
-        },
-        {
-          match: {
-            id: "python",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "scala",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "lisp",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "elixir",
-          },
-          id: "lines",
-        },
-        {
-          match: {
-            id: "javascript",
-          },
-          id: "lines",
         },
       ]}
       legends={[
@@ -146,7 +140,7 @@ const PieChart: React.FC = () => {
             {
               on: "hover",
               style: {
-                itemTextColor: "#000",
+                itemTextColor: "#fff",
               },
             },
           ],

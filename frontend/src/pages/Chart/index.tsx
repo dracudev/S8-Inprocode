@@ -10,13 +10,13 @@ const Chart = () => {
         <PieChart></PieChart>
       </div>
       <div className="md:h-full md:w-full h-[50vh] w-full">
+        <RadarChart></RadarChart>
+      </div>
+      <div className="md:h-full md:w-full h-[50vh] w-full">
         <LineChart></LineChart>
       </div>
       <div className="md:h-full md:w-full h-[50vh] w-full">
         <BarChart></BarChart>
-      </div>
-      <div className="md:h-full md:w-full h-[50vh] w-full">
-        <RadarChart></RadarChart>
       </div>
     </div>
   );
