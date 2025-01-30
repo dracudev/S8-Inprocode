@@ -2,7 +2,7 @@ import { Game } from "@/types/types";
 import { useState, useEffect } from "react";
 import defaultImage from "@/assets/default.jpg";
 
-const useFetch = (endpoint: string, dependencies: unknown[] = []) => {
+const useFetchGame = (endpoint: string, dependencies: unknown[] = []) => {
   const [data, setData] = useState<Game[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -43,4 +43,4 @@ const useFetch = (endpoint: string, dependencies: unknown[] = []) => {
   return { data, loading, error };
 };
 
-export default useFetch;
+export default useFetchGame;
