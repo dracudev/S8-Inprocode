@@ -9,7 +9,7 @@ const Chart = () => {
       <div className="md:h-full md:w-full h-[50vh] w-full">
         <PieChart></PieChart>
       </div>
-      <div className="md:h-full md:w-full h-[50vh] w-full">
+      <div className="md:h-[500px] md:w-full h-[50vh] w-full">
         <RadarChart></RadarChart>
       </div>
       <div className="md:h-full md:w-full h-[50vh] w-full">

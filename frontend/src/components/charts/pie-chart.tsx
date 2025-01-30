@@ -5,19 +5,6 @@ import { Game } from "@/types/types";
 const PieChart: React.FC = () => {
   const { data, loading, error } = useFetch("/games");
 
-  if (loading)
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        Loading...
-      </div>
-    );
-  if (error)
-    return (
-      <div className="w-full h-full flex items-center justify-center text-red-500">
-        Error: {error}
-      </div>
-    );
-
   const parsedData = Object.values(
     data.reduce((acc, game: Game) => {
       game.platform.forEach((platform) => {
@@ -34,6 +21,19 @@ const PieChart: React.FC = () => {
       return acc;
     }, {} as Record<string, { id: string; label: string; value: number; color: string }>)
   );
+
+  if (loading)
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  if (error)
+    return (
+      <div className="w-full h-full flex items-center justify-center text-red-500">
+        Error: {error}
+      </div>
+    );
 
   return (
     <ResponsivePie
