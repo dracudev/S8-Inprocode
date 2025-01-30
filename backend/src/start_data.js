@@ -1,6 +1,6 @@
 import User from "./models/userModel.js";
 import Game from "./models/gameModel.js";
-import UserGame from "./models/userGameModel.js";
+// import UserGame from "./models/userGameModel.js";
 import { readJSON } from "./utils/utils.js";
 
 const insertInitialUserData = async () => {
@@ -19,14 +19,14 @@ const insertInitialUserData = async () => {
     userMap[user.username] = user.id_user;
   });
 
-  let userGameData = readJSON("./src/data/userGame.json");
+  /*let userGameData = readJSON("./src/data/userGame.json");
 
   userGameData = userGameData.map((entry) => ({
     ...entry,
     userId: userMap[entry.userId],
   }));
 
-  await UserGame.bulkCreate(userGameData, { ignoreDuplicates: true });
+  await UserGame.bulkCreate(userGameData, { ignoreDuplicates: true });*/
 };
 
 export { insertInitialUserData };

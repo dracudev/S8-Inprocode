@@ -1,4 +1,4 @@
-import UserGame from "../models/userGameModel.js";
+/* import UserGame from "../models/userGameModel.js";
 import User from "../models/userModel.js";
 import Game from "../models/gameModel.js";
 
@@ -56,4 +56,4 @@ export const getGamesForUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-};
+};*/
