@@ -8,14 +8,14 @@ import {
 import { uploadFileMiddleware } from "../middlewares/upload.js";
 import {
   addUserToGame,
-  getGamesForUser,
+  // getGamesForUser,
   removeUserFromGame,
 } from "../controllers/userGameController.js";
 
 const router = Router();
 router.get("/", getUsers);
 router.get("/:id", getUserById);
-router.get("/:userId/games", getGamesForUser);
+// router.get("/:userId/games", getGamesForUser);
 
 router.post("/upload-photo", uploadFileMiddleware, uploadPhoto);
 router.post("/add", addUserToGame);

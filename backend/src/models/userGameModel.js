@@ -1,4 +1,4 @@
-import { DataTypes } from "sequelize";
+/*import { DataTypes } from "sequelize";
 import { sequelize } from "../db.js";
 import User from "./userModel.js";
 import Game from "./gameModel.js";
@@ -28,4 +28,4 @@ const UserGame = sequelize.define(
 User.belongsToMany(Game, { through: UserGame, foreignKey: "userId" });
 Game.belongsToMany(User, { through: UserGame, foreignKey: "gameId" });
 
-export default UserGame;
+export default UserGame;*/

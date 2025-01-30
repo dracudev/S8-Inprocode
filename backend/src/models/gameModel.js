@@ -29,7 +29,7 @@ const allowedGenres = [
 
 const Game = sequelize.define("Game", {
   id_game: {
-    type: DataTypes.INTEGER(8).UNSIGNED,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
@@ -39,7 +39,7 @@ const Game = sequelize.define("Game", {
     unique: true,
   },
   year: {
-    type: DataTypes.INTEGER(4),
+    type: DataTypes.INTEGER,
     //allowNull defaults to true
   },
   photo: {
