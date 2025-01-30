@@ -5,19 +5,35 @@ import { Game } from "@/types/types";
 const PieChart: React.FC = () => {
   const { data, loading, error } = useFetch("/games");
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading)
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  if (error)
+    return (
+      <div className="w-full h-full flex items-center justify-center text-red-500">
+        Error: {error}
+      </div>
+    );
 
-  const parsedData = Array.isArray(data)
-    ? data.map((game: Game) => ({
-        id: game.id_game,
-        label: Array.isArray(game.platform)
-          ? game.platform.join(", ")
-          : game.platform || "Unknown Platform",
-        value: game.year,
-        color: "hsl(0, 70%, 50%)",
-      }))
-    : [];
+  const parsedData = Object.values(
+    data.reduce((acc, game: Game) => {
+      game.platform.forEach((platform) => {
+        if (!acc[platform]) {
+          acc[platform] = {
+            id: platform,
+            label: platform,
+            value: 0,
+            color: "hsl(0, 70%, 50%)",
+          };
+        }
+        acc[platform].value += 1;
+      });
+      return acc;
+    }, {} as Record<string, { id: string; label: string; value: number; color: string }>)
+  );
 
   return (
     <ResponsivePie

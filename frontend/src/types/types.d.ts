@@ -1,6 +1,6 @@
 export interface Game {
-  platform: string | string[];
-  genre: string | string[];
+  platform: string[];
+  genre: string[];
   id_game: number;
   title: string;
   year: number;
