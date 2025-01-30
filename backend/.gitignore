@@ -28,7 +28,6 @@ Thumbs.db
 dist/
 build/
 out/
-public/
 coverage/
 
 .vercel
