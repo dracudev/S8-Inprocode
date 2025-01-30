@@ -1,9 +1,11 @@
-import { createRequire } from "node:module";
-import path from "node:path";
+import fs from "fs";
+import path from "path";
 
-// Custom implementation of readJSON
-const require = createRequire(import.meta.url);
 export const readJSON = (relativePath) => {
+  // Resolve the absolute path based on the relative one
   const absolutePath = path.resolve(relativePath);
-  return require(absolutePath);
+
+  // Read the file content and parse it as JSON
+  const data = fs.readFileSync(absolutePath, "utf-8");
+  return JSON.parse(data);
 };
