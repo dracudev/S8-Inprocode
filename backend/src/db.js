@@ -3,16 +3,29 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const sequelize = new Sequelize(
-  process.env.DATABASE,
-  process.env.USER_NAME,
-  process.env.PASSWORD,
-  {
-    host: process.env.HOST_NAME,
-    port: 3306,
-    dialect: "mysql",
-  }
-);
+const isProduction = process.env.NODE_ENV === "production";
+
+const sequelize = isProduction
+  ? new Sequelize(process.env.DATABASE_URL, {
+      dialect: "postgres",
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      },
+      logging: false, // Set to true for debugging
+    })
+  : new Sequelize(
+      process.env.DATABASE,
+      process.env.USER_NAME,
+      process.env.PASSWORD,
+      {
+        host: process.env.HOST_NAME,
+        port: 3306,
+        dialect: "mysql",
+      }
+    );
 
 const syncroModel = async () => {
   try {

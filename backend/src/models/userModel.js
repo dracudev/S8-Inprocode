@@ -20,12 +20,12 @@ const User = sequelize.define(
       allowNull: false,
     },
     username: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.STRING(100),
       allowNull: false,
       unique: true,
     },
     roles: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING(100),
       allowNull: false,
       get() {
         const rawValue = this.getDataValue("roles");
@@ -40,7 +40,7 @@ const User = sequelize.define(
       },
     },
     photo: {
-      type: DataTypes.STRING(30),
+      type: DataTypes.STRING(100),
       allowNull: true,
     },
     latitude: {
