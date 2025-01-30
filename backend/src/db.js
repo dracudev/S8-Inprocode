@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import dotenv from "dotenv";
+import pg from "pg";
 
 dotenv.config();
 
@@ -8,7 +9,7 @@ const isProduction = process.env.NODE_ENV === "production";
 const sequelize = isProduction
   ? new Sequelize(process.env.DATABASE_URL, {
       dialect: "postgres",
-      dialectModule: require("pg"),
+      dialectModule: pg,
       dialectOptions: {
         ssl: {
           require: true,
