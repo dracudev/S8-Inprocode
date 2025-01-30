@@ -22,14 +22,8 @@ const useFetch = (endpoint: string, dependencies: unknown[] = []) => {
           id_game: game.id_game,
           photo: game.photo ? encodeURI(game.photo) : defaultImage,
           title: game.title,
-          platform:
-            typeof game.platform === "string"
-              ? game.platform.split(", ")
-              : game.platform,
-          genre:
-            typeof game.genre === "string"
-              ? game.genre.split(", ")
-              : game.genre,
+          platform: game.platform,
+          genre: game.genre,
           year: game.year,
         }));
         // console.log("Parsed Data:", parsedData);
@@ -43,6 +37,7 @@ const useFetch = (endpoint: string, dependencies: unknown[] = []) => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [endpoint, ...dependencies]);
 
   return { data, loading, error };
