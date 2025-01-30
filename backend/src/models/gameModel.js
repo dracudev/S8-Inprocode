@@ -46,7 +46,7 @@ const Game = sequelize.define("Game", {
     type: DataTypes.STRING(500),
   },
   platform: {
-    type: DataTypes.STRING(30),
+    type: DataTypes.STRING(200),
     allowNull: false,
     get() {
       const rawValue = this.getDataValue("platform");
@@ -70,7 +70,7 @@ const Game = sequelize.define("Game", {
     },
   },
   genre: {
-    type: DataTypes.STRING(30),
+    type: DataTypes.STRING(300),
     allowNull: false,
     get() {
       const rawValue = this.getDataValue("genre");

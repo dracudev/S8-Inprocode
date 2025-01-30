@@ -14,3 +14,6 @@ export interface User {
   password: string;
   photo: string | null;
 }
+
+export type PartialGame = Partial<Game>;
+export type PartialUser = Partial<User>;

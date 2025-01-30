@@ -3,7 +3,6 @@ import { Button } from "../ui/button";
 import { Game } from "@/types/types";
 import { X } from "lucide-react";
 
-// Add these constants to match backend validation
 const ALLOWED_PLATFORMS = ["PC", "PlayStation", "Xbox", "Nintendo", "Mobile"];
 const ALLOWED_GENRES = [
   "Action",
@@ -62,6 +61,7 @@ const Modal: React.FC<ModalProps> = ({
       setFormData(defaultFormData);
     }
     setErrors({});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialData, isOpen]);
 
   const handleChange = (
@@ -95,7 +95,6 @@ const Modal: React.FC<ModalProps> = ({
     e.preventDefault();
     setErrors({});
 
-    // Validate form
     const newErrors: Record<string, string> = {};
     if (!formData.title.trim()) {
       newErrors.title = "Title is required";
@@ -112,7 +111,7 @@ const Modal: React.FC<ModalProps> = ({
       return;
     }
 
-    console.log("Submitting form data:", formData); // Debug log
+    // console.log("Submitting form data:", formData);
     onSubmit(formData);
   };
 

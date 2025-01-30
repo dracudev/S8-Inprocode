@@ -1,42 +1,27 @@
 import { ResponsivePie } from "@nivo/pie";
+import useFetch from "@/hooks/use-fetch";
+import { Game } from "@/types/types";
 
 const PieChart: React.FC = () => {
-  const data = [
-    {
-      id: "python",
-      label: "python",
-      value: 284,
-      color: "hsl(345, 70%, 50%)",
-    },
-    {
-      id: "php",
-      label: "php",
-      value: 386,
-      color: "hsl(260, 70%, 50%)",
-    },
-    {
-      id: "rust",
-      label: "rust",
-      value: 160,
-      color: "hsl(310, 70%, 50%)",
-    },
-    {
-      id: "scala",
-      label: "scala",
-      value: 244,
-      color: "hsl(212, 70%, 50%)",
-    },
-    {
-      id: "lisp",
-      label: "lisp",
-      value: 525,
-      color: "hsl(255, 70%, 50%)",
-    },
-  ];
+  const { data, loading, error } = useFetch("/games");
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  const parsedData = Array.isArray(data)
+    ? data.map((game: Game) => ({
+        id: game.id_game,
+        label: Array.isArray(game.platform)
+          ? game.platform.join(", ")
+          : game.platform || "Unknown Platform",
+        value: game.year,
+        color: "hsl(0, 70%, 50%)",
+      }))
+    : [];
 
   return (
     <ResponsivePie
-      data={data}
+      data={parsedData}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
       innerRadius={0.5}
       padAngle={0.7}

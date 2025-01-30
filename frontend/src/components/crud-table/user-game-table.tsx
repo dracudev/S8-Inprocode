@@ -1,84 +1,43 @@
-import { useCallback, useMemo, useState, useEffect } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
+import { Game } from "@/types/types";
 import {
   ModuleRegistry,
   AllCommunityModule,
-  themeQuartz,
+  GridReadyEvent,
+  ColDef,
+  ICellRendererParams,
 } from "ag-grid-community";
-import { Game } from "@/types/types";
-import defaultImage from "@/assets/default.jpg";
 import {
   GamePhotoRenderer,
   OptionsCellRenderer,
   CreateButtonHeader,
 } from "./cell-renderer";
+import { myTheme } from "./my-theme";
 import Modal from "./modal";
 import { handleCreate, handleUpdate } from "@/utils/crud";
+import useFetch from "@/hooks/use-fetch";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const myTheme = themeQuartz.withParams({
-  accentColor: "#AF22F2",
-  backgroundColor: "#1f2836",
-  browserColorScheme: "dark",
-  chromeBackgroundColor: {
-    ref: "foregroundColor",
-    mix: 0.07,
-    onto: "backgroundColor",
-  },
-  foregroundColor: "#FFFFFF",
-  headerFontSize: 14,
-  borderRadius: "0px",
-  inputBorderRadius: "0px",
-  wrapperBorderRadius: "0px",
-});
+interface CellRendererProps extends ICellRendererParams {
+  data: Game;
+}
 
 const UserGameTable: React.FC = () => {
-  const [refresh, setRefresh] = useState(false);
-  const [rowData, setRowData] = useState<Game[]>([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [refresh, setRefresh] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalData, setModalData] = useState<Game | undefined>(undefined);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const baseUrl = import.meta.env.VITE_APP_CLIENT_HOST;
-      const response = await fetch(`${baseUrl}/games`);
-      const result = await response.json();
-      const parsedData: Game[] = result.data.map((game: Game) => ({
-        id_game: game.id_game,
-        photo: game.photo ? encodeURI(game.photo) : defaultImage,
-        title: game.title,
-        platform:
-          typeof game.platform === "string"
-            ? game.platform.split(", ")
-            : game.platform,
-        genre:
-          typeof game.genre === "string" ? game.genre.split(", ") : game.genre,
-        year: game.year,
-      }));
-      setRowData(parsedData);
-    };
-    fetchData();
-  }, [refresh]);
+  const { data: rowData, loading, error } = useFetch("/games", [refresh]);
 
-  const updateRowData = () => {
+  const updateRowData = (): void => {
     setRefresh((prev) => !prev);
   };
 
-  const handleOpenModal = (data?: Game) => {
+  const handleOpenModal = (data?: Game): void => {
     if (data) {
-      const modalFormData: Game = {
-        id_game: data.id_game,
-        title: data.title,
-        photo: data.photo,
-        year: data.year,
-        platform:
-          typeof data.platform === "string"
-            ? data.platform.split(", ")
-            : data.platform,
-        genre:
-          typeof data.genre === "string" ? data.genre.split(", ") : data.genre,
-      };
+      const modalFormData: Game = data;
       setModalData(modalFormData);
     } else {
       setModalData(undefined);
@@ -86,12 +45,12 @@ const UserGameTable: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (): void => {
     setIsModalOpen(false);
     setModalData(undefined);
   };
 
-  const handleSubmitModal = async (formData: Game) => {
+  const handleSubmitModal = async (formData: Game): Promise<void> => {
     try {
       if (modalData) {
         await handleUpdate(
@@ -112,16 +71,38 @@ const UserGameTable: React.FC = () => {
 
   const containerStyle = useMemo(() => ({ width: "100%", height: "100%" }), []);
   const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
-  const defaultColDef = useMemo(() => ({ flex: 1 }), []);
-  const [columnDefs] = useState([
-    { headerName: "Photo", field: "photo", cellRenderer: GamePhotoRenderer },
-    { headerName: "Title", field: "title" },
-    { headerName: "Platform", field: "platform" },
-    { headerName: "Genre", field: "genre" },
+  const defaultColDef = useMemo<ColDef>(() => ({ flex: 1 }), []);
+
+  const [columnDefs] = useState<ColDef[]>([
+    {
+      headerName: "Photo",
+      field: "photo",
+      cellRenderer: GamePhotoRenderer,
+    },
+    {
+      headerName: "Title",
+      field: "title",
+    },
+    {
+      headerName: "Platform",
+      field: "platform",
+      valueFormatter: (params) => {
+        // Assuming the object has a 'name' property
+        return params.value.platform;
+      },
+    },
+    {
+      headerName: "Genre",
+      field: "genre",
+      valueFormatter: (params) => {
+        // Assuming the object has a 'name' property
+        return params.value.genre;
+      },
+    },
     {
       headerName: "Options",
       field: "options",
-      cellRenderer: (params) => (
+      cellRenderer: (params: CellRendererProps) => (
         <OptionsCellRenderer
           {...params}
           updateRowData={updateRowData}
@@ -136,11 +117,25 @@ const UserGameTable: React.FC = () => {
   ]);
 
   const onGridReady = useCallback(
-    (params) => {
-      params.api.setRowData(rowData);
+    (params: GridReadyEvent) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (params.api as any).setRowData(rowData);
     },
     [rowData]
   );
+
+  if (loading)
+    return (
+      <div className="w-full h-full flex items-center justify-center">
+        Loading...
+      </div>
+    );
+  if (error)
+    return (
+      <div className="w-full h-full flex items-center justify-center text-red-500">
+        Error: {error}
+      </div>
+    );
 
   return (
     <div style={containerStyle}>

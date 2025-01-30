@@ -1,4 +1,5 @@
 import { ResponsiveBar } from "@nivo/bar";
+// import useFetch from "@/hooks/use-fetch";
 
 const BarChart = () => {
   const data = [
