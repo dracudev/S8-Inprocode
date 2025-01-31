@@ -10,7 +10,7 @@ const useFetchUsers = (endpoint: string, dependencies: unknown[] = []) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseUrl = import.meta.env.VITE_APP_CLIENT_HOST;
+        const baseUrl = import.meta.env.VITE_APP_API_URL;
         const response = await fetch(`${baseUrl}${endpoint}`);
         if (!response.ok) {
           throw new Error(`Error: ${response.statusText}`);
