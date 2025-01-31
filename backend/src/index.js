@@ -20,6 +20,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:3000",
       "https://inprocode-backend.vercel.app/",
+      "https://inprocode-backend-lk3akvdxr-dracudev-projects.vercel.app/",
       "https://s8-inprocode-frontend.vercel.app/",
     ],
   })
@@ -40,6 +41,9 @@ await testConnection();
 
 // Routes
 // app.use("/auth", authRoutes);
+app.use("/", (req, res) => {
+  res.send("Hello World");
+});
 app.use("/user", userRoutes);
 app.use("/games", gamesRoutes);
 app.use("/test", testRoutes);

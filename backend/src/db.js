@@ -34,7 +34,7 @@ const syncroModel = async () => {
     // "force: true" deletes the table if it already exists
     // "force: false" does not delete the table if it already exists
     // "alter: true" synchronizes the table with the model and updates the table
-    await sequelize.sync({ force: false }).then(() => {
+    await sequelize.sync({ force: true }).then(() => {
       console.log("Syncronized models with database");
     });
   } catch (error) {
