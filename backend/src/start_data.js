@@ -4,11 +4,11 @@ import Game from "./models/gameModel.js";
 import { readJSON } from "./utils/utils.js";
 
 const insertInitialUserData = async () => {
-  const userData = readJSON("../public/data/users.json");
+  const userData = readJSON("../../public/data/users.json");
 
   await User.bulkCreate(userData, { ignoreDuplicates: true });
 
-  const gameData = readJSON("../public/data/games.json");
+  const gameData = readJSON("../../public/data/games.json");
 
   await Game.bulkCreate(gameData, { ignoreDuplicates: true });
 
