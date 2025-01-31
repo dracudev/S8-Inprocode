@@ -10,7 +10,7 @@ const useFetchGame = (endpoint: string, dependencies: unknown[] = []) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const baseUrl = import.meta.env.VITE_APP_CLIENT_HOST;
+        const baseUrl = import.meta.env.VITE_APP_API_URL;
         // console.log(`Fetching from: ${baseUrl}${endpoint}`);
         const response = await fetch(`${baseUrl}${endpoint}`);
         if (!response.ok) {
