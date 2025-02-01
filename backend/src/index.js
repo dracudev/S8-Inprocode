@@ -14,27 +14,27 @@ dotenv.config();
 const app = express();
 app.disable("x-powered-by");
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:3000",
-  "https://s8-inprocode-frontend.vercel.app",
-];
+// Specific CORS configuration
+const corsOptions = {
+  origin: [
+    "https://s8-inprocode-frontend.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:3000",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
 
-app.use(
-  cors({
-    credentials: true,
-    origin: allowedOrigins,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  })
-);
+// Apply CORS middleware before routes
+app.use(cors(corsOptions));
 
-//Middleware for parsing cookies
+// Pre-flight requests
+app.options("*", cors(corsOptions));
+
 app.use(cookieParser());
-
-// Middleware for parsing application/json
 app.use(express.json());
-
-// Middleware for parsing application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
 await testConnection();
@@ -43,13 +43,27 @@ await testConnection();
 
 // Routes
 // app.use("/auth", authRoutes);
-
 app.use("/api/user", userRoutes);
 app.use("/api/games", gamesRoutes);
 app.use("/api/test", testRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({ status: "OK", message: "API is running" });
+});
+
+// Add CORS headers to all responses
+app.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://s8-inprocode-frontend.vercel.app"
+  );
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+  );
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
 });
 
 // Error handling middleware
