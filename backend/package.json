@@ -5,8 +5,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "start": "vercel dev",
+    "dev": "dotenv -e .env.local -- nodemon index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^9.18.0",
     "globals": "^15.14.0",
     "nodemon": "^3.1.7"

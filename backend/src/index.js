@@ -20,6 +20,7 @@ const corsOptions = {
     "https://s8-inprocode-frontend.vercel.app",
     "http://localhost:5173",
     "http://localhost:3000",
+    "http://localhost:5000",
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: [
@@ -80,10 +81,12 @@ app.use((err, req, res) => {
 });
 
 // Local server
-/*const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT ?? 3000;
 
-app.listen(PORT, () => {
-  console.log(`server listening on port http://localhost:${PORT}`);
-});*/
+if (process.env.NODE_ENV === "development") {
+  app.listen(PORT, () => {
+    console.log(`server listening on port http://localhost:${PORT}`);
+  });
+}
 
 export default app;
