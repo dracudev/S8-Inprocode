@@ -2,7 +2,6 @@ import { type Game } from "@/types/types";
 
 const defaultHeaders = {
   "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "https://s8-inprocode-frontend.vercel.app",
 };
 
 export const handleCreate = async (
