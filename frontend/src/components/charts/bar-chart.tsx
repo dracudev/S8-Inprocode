@@ -3,7 +3,7 @@ import useFetchGame from "@/hooks/use-fetch-game";
 import { Game } from "@/types/types";
 
 const BarChart = () => {
-  const { data, loading, error } = useFetchGame("api/games");
+  const { data, loading, error } = useFetchGame("api/game");
 
   if (loading)
     return (

@@ -22,7 +22,7 @@ export const handleCreate = async (
 
     console.log("Sending payload:", payload); // Debug log
 
-    const response = await fetch(`${baseUrl}api/games`, {
+    const response = await fetch(`${baseUrl}api/game`, {
       method: "POST",
       headers: defaultHeaders,
       credentials: "include",
@@ -74,7 +74,7 @@ export const handleUpdate = async (
 
     console.log("Updating game with payload:", payload); // Debug log
 
-    const response = await fetch(`${baseUrl}api/games/${formData.id_game}`, {
+    const response = await fetch(`${baseUrl}api/game/${formData.id_game}`, {
       method: "PATCH",
       headers: defaultHeaders,
       credentials: "include",
@@ -109,7 +109,7 @@ export const handleDelete = async (
 ): Promise<void> => {
   try {
     const baseUrl = import.meta.env.VITE_APP_API_URL;
-    const response = await fetch(`${baseUrl}api/games/${id}`, {
+    const response = await fetch(`${baseUrl}api/game/${id}`, {
       method: "DELETE",
       headers: defaultHeaders,
       credentials: "include",

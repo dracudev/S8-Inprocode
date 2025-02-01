@@ -26,4 +26,6 @@ model Game {
   photo     String?  @db.VarChar(500)
   platform  String   @db.VarChar(200)
   genre     String   @db.VarChar(300)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }

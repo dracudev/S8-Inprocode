@@ -3,7 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 // import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
-import gamesRoutes from "./routes/gamesRoutes.js";
+import gameRoutes from "./routes/gameRoutes.js";
 import testRoutes from "./routes/testRoutes.js";
 import { testConnection } from "./db.js";
 import dotenv from "dotenv";
@@ -52,7 +52,7 @@ await testConnection();
 // Routes
 // app.use("/auth", authRoutes);
 app.use("/api/user", userRoutes);
-app.use("/api/games", gamesRoutes);
+app.use("/api/game", gameRoutes);
 app.use("/api/test", testRoutes);
 
 app.get("/", (req, res) => {

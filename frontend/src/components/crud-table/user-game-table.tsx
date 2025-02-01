@@ -29,7 +29,7 @@ const UserGameTable: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalData, setModalData] = useState<Game | undefined>(undefined);
 
-  const { data: rowData, loading, error } = useFetch("api/games", [refresh]);
+  const { data: rowData, loading, error } = useFetch("api/game", [refresh]);
 
   const updateRowData = (): void => {
     setRefresh((prev) => !prev);
