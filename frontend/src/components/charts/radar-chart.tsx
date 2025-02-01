@@ -3,7 +3,7 @@ import { Game } from "@/types/types";
 import { ResponsiveRadar } from "@nivo/radar";
 
 const RadarChart = () => {
-  const { data, loading, error } = useFetch("/games");
+  const { data, loading, error } = useFetch("/api/games");
   const parsedData = Array.isArray(data)
     ? Object.values(
         data.reduce((acc, game: Game) => {

@@ -18,7 +18,7 @@ export const handleCreate = async (
 
     console.log("Sending payload:", payload); // Debug log
 
-    const response = await fetch(`${baseUrl}/games`, {
+    const response = await fetch(`${baseUrl}/api/games`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export const handleUpdate = async (
 
     console.log("Updating game with payload:", payload); // Debug log
 
-    const response = await fetch(`${baseUrl}/games/${formData.id_game}`, {
+    const response = await fetch(`${baseUrl}/api/games/${formData.id_game}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +107,7 @@ export const handleDelete = async (
 ): Promise<void> => {
   try {
     const baseUrl = import.meta.env.VITE_APP_CLIENT_HOST;
-    const response = await fetch(`${baseUrl}/games/${id}`, {
+    const response = await fetch(`${baseUrl}/api/games/${id}`, {
       method: "DELETE",
     });
     if (!response.ok) {
