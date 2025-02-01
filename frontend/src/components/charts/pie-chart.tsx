@@ -3,7 +3,7 @@ import useFetch from "@/hooks/use-fetch-game";
 import { Game } from "@/types/types";
 
 const PieChart: React.FC = () => {
-  const { data, loading, error } = useFetch("/api/games");
+  const { data, loading, error } = useFetch("api/games");
 
   const parsedData = Object.values(
     data.reduce((acc, game: Game) => {

@@ -2,7 +2,7 @@ import useFetchUsers from "@/hooks/use-fetch-user";
 import { ResponsiveLine } from "@nivo/line";
 
 const LineChart: React.FC = () => {
-  const { data, loading, error } = useFetchUsers("/api/user");
+  const { data, loading, error } = useFetchUsers("api/user");
   data.forEach((user) => {
     const date = new Date(user.created_at);
     console.log(
