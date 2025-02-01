@@ -8,6 +8,18 @@
   ],
   "routes": [
     {
+      "src": "/api/user(.*)",
+      "dest": "src/index.js"
+    },
+    {
+      "src": "/api/games(.*)",
+      "dest": "src/index.js"
+    },
+    {
+      "src": "/api/test(.*)",
+      "dest": "src/index.js"
+    },
+    {
       "src": "/(.*)",
       "dest": "src/index.js"
     }

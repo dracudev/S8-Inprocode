@@ -8,21 +8,23 @@ import testRoutes from "./routes/testRoutes.js";
 import { testConnection } from "./db.js";
 import dotenv from "dotenv";
 // import { insertInitialUserData } from "./start_data.js";
+
 dotenv.config();
 
 const app = express();
 app.disable("x-powered-by");
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://s8-inprocode-frontend.vercel.app",
+];
+
 app.use(
   cors({
     credentials: true,
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:3000",
-      "https://inprocode-backend.vercel.app/",
-      "https://inprocode-backend-lk3akvdxr-dracudev-projects.vercel.app/",
-      "https://s8-inprocode-frontend.vercel.app/",
-    ],
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   })
 );
 
@@ -41,12 +43,20 @@ await testConnection();
 
 // Routes
 // app.use("/auth", authRoutes);
-app.use("/", (req, res) => {
-  res.send("Hello World");
+
+app.use("/api/user", userRoutes);
+app.use("/api/games", gamesRoutes);
+app.use("/api/test", testRoutes);
+
+app.get("/", (req, res) => {
+  res.status(200).json({ status: "OK", message: "API is running" });
 });
-app.use("/user", userRoutes);
-app.use("/games", gamesRoutes);
-app.use("/test", testRoutes);
+
+// Error handling middleware
+app.use((err, req, res) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Something broke!" });
+});
 
 // Local server
 /*const PORT = process.env.PORT ?? 3000;
