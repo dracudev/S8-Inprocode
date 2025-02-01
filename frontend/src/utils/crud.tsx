@@ -1,11 +1,16 @@
 import { type Game } from "@/types/types";
 
+const defaultHeaders = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "https://s8-inprocode-frontend.vercel.app",
+};
+
 export const handleCreate = async (
   formData: Game,
   updateRowData: () => void
 ): Promise<void> => {
   try {
-    const baseUrl = import.meta.env.VITE_APP_CLIENT_HOST;
+    const baseUrl = import.meta.env.VITE_APP_API_URL;
 
     // Format the data to match backend expectations
     const payload = {
@@ -20,9 +25,8 @@ export const handleCreate = async (
 
     const response = await fetch(`${baseUrl}api/games`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: defaultHeaders,
+      credentials: "include",
       body: JSON.stringify(payload),
     });
 
@@ -54,7 +58,7 @@ export const handleUpdate = async (
   updateRowData: () => void
 ): Promise<void> => {
   try {
-    const baseUrl = import.meta.env.VITE_APP_CLIENT_HOST;
+    const baseUrl = import.meta.env.VITE_APP_API_URL;
 
     if (!formData.id_game) {
       throw new Error("Game ID is required for update");
@@ -73,9 +77,8 @@ export const handleUpdate = async (
 
     const response = await fetch(`${baseUrl}api/games/${formData.id_game}`, {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: defaultHeaders,
+      credentials: "include",
       body: JSON.stringify(payload),
     });
 
@@ -106,9 +109,11 @@ export const handleDelete = async (
   updateRowData: () => void
 ): Promise<void> => {
   try {
-    const baseUrl = import.meta.env.VITE_APP_CLIENT_HOST;
+    const baseUrl = import.meta.env.VITE_APP_API_URL;
     const response = await fetch(`${baseUrl}api/games/${id}`, {
       method: "DELETE",
+      headers: defaultHeaders,
+      credentials: "include",
     });
     if (!response.ok) {
       const data = await response.json();
