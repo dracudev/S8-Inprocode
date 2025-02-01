@@ -18,7 +18,7 @@
       }
     },
     {
-      "src": "/api/games(.*)",
+      "src": "/api/game(.*)",
       "dest": "src/index.js",
       "headers": {
         "Access-Control-Allow-Credentials": "true",
