@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "dotenv -e .env.local -- nodemon index.js",
-    "build": "vercel dev"
+    "build:dev": "vercel dev"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
