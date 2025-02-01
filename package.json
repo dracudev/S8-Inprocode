@@ -22,12 +22,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:frontend": "npm --workspace frontend start",
-    "start:backend": "npm --workspace backend start",
+    "build:frontend": "npm --workspace frontend run build",
+    "build:backend": "npm --workspace backend run build",
+    "build": "concurrently \"npm run build:frontend\" \"npm run build:backend\"",
     "dev:frontend": "npm --workspace frontend run dev",
     "dev:backend": "npm --workspace backend run dev",
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\"",
-    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "lint": "eslint ./frontend ./backend"
   },
   "devDependencies": {

@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "set NODE_ENV=production tsc -b && vite build",
+    "build": "set NODE_ENV=production tsc -b && vite build && vite preview --port 5000 --mode production",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "start": "npm run build && vite preview --port 5000 --mode production"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@ag-grid-community/react": "^32.3.3",

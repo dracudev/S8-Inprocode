@@ -5,8 +5,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "vercel dev",
-    "dev": "dotenv -e .env.local -- nodemon index.js"
+    "start": "node src/index.js",
+    "dev": "dotenv -e .env.local -- nodemon index.js",
+    "build": "vercel dev"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
