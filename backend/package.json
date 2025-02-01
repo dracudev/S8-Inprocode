@@ -7,9 +7,14 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "dotenv -e .env.local -- nodemon index.js",
-    "build:dev": "vercel dev"
+    "build:dev": "vercel dev",
+    "seed": "node prisma/seed.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   },
   "dependencies": {
+    "@prisma/client": "^6.3.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.3",
     "cookie-parser": "^1.4.7",
@@ -30,9 +35,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
+    "cross-env": "^7.0.3",
     "dotenv-cli": "^8.0.0",
     "eslint": "^9.18.0",
     "globals": "^15.14.0",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.7",
+    "prisma": "^6.3.0",
+    "sequelize-cli": "^6.6.2"
   }
 }
