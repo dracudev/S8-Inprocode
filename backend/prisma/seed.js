@@ -3,7 +3,9 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-// npx prisma db seed
+//  npx prisma migrate dev --name rename_tables
+//  npx prisma generate
+//  npx prisma db seed
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

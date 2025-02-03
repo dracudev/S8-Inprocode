@@ -33,7 +33,7 @@ export const getUsers = async (req, res) => {
 
     res.status(200).json({
       code: 1,
-      message: "Games List",
+      message: "Users List",
       data: users,
     });
   } catch (error) {

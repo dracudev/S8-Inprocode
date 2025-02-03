@@ -17,6 +17,8 @@ model User {
   latitude   Decimal?  @db.Decimal(10, 8)
   longitude  Decimal?  @db.Decimal(11, 8)
   created_at DateTime  @default(now())
+
+  @@map("Users")
 }
 
 model Game {
@@ -28,4 +30,6 @@ model Game {
   genre     String   @db.VarChar(300)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  @@map("Games")
 }

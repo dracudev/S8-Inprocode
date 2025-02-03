@@ -5,9 +5,10 @@ import cors from "cors";
 import userRoutes from "./routes/userRoutes.js";
 import gameRoutes from "./routes/gameRoutes.js";
 import testRoutes from "./routes/testRoutes.js";
+import eventRoutes from "./routes/eventRoutes.js";
 import { testConnection } from "./db.js";
 import dotenv from "dotenv";
-// import { insertInitialUserData } from "./start_data.js";
+import { insertInitialUserData } from "./start_data.js";
 
 dotenv.config();
 
@@ -47,13 +48,14 @@ app.use(express.urlencoded({ extended: true }));
 
 await testConnection();
 // Uncomment the line below to insert initial data to the database
-// await insertInitialUserData();
+await insertInitialUserData();
 
 // Routes
 // app.use("/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/game", gameRoutes);
 app.use("/api/test", testRoutes);
+app.use("/api/event", eventRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({ status: "OK", message: "API is running" });
