@@ -8,7 +8,7 @@ import testRoutes from "./routes/testRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
 import { testConnection } from "./db.js";
 import dotenv from "dotenv";
-import { insertInitialUserData } from "./start_data.js";
+// import { insertInitialUserData } from "./start_data.js";
 
 dotenv.config();
 
@@ -48,7 +48,7 @@ app.use(express.urlencoded({ extended: true }));
 
 await testConnection();
 // Uncomment the line below to insert initial data to the database
-await insertInitialUserData();
+// await insertInitialUserData();
 
 // Routes
 // app.use("/auth", authRoutes);

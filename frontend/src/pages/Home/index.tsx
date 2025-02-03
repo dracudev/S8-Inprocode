@@ -1,31 +1,61 @@
-import { Button } from "@/components/ui/button";
-import Banner from "../../assets/banner.webp";
+import CustomDialog from "@/components/ui/custom-dialog";
+import { useState } from "react";
+
+import CustomCarousel from "@/components/ui/custom-carousel";
+
+import FeatureCard from "@/components/ui/feature-card";
+import { RecycleIcon, GamepadIcon, HandshakeIcon } from "lucide-react";
 
 const Home = () => {
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
+
   return (
-    <div className="items-center justify-center flex">
-      <div className="flex-col flex m-3 w-[75%]">
-        <header className="flex text-xl items-center justify-center m-3">
-          <h1 className="text-3xl text-center">Reduce, Reuse, Regame!</h1>
-        </header>
-        <section className="flex flex-col m-3 items-center">
-          <img src={Banner} className="w-[75%] border rounded-2xl mb-3" />
-          <p className="text-center">
-            A web app for gamers to swap, trade, and give new life to old games.
-            Save money, reduce waste, and discover your next adventure while
-            supporting a sustainable gaming community!
-          </p>
-        </section>
-        <footer className="flex items-center justify-center m-3">
-          <div className="flex-col flex items-center ">
-            {" "}
-            <Button className=" bg-slate-100 text-zinc-800 mb-3 hover:bg-zinc-800 hover:text-white">
-              Log In
-            </Button>
-            <p className="text-sm">Dont have an account? Create one now!</p>
-          </div>
-        </footer>
-      </div>
+    <div className="container mx-auto px-4 py-8 space-y-8">
+      <header className="text-center space-y-4">
+        <h1 className="text-4xl font-bold text-primary tracking-tight">
+          Reduce, Reuse, Regame!
+        </h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          Swap, trade, and give new life to old games. Save money, reduce waste,
+          and discover your next adventure!
+        </p>
+      </header>
+
+      <CustomCarousel className="w-full"></CustomCarousel>
+
+      <section className="grid md:grid-cols-3 gap-4">
+        <FeatureCard
+          title="Game Exchange"
+          description="Trade games with other gamers and expand your collection affordably."
+        >
+          {" "}
+          <GamepadIcon></GamepadIcon>
+        </FeatureCard>
+        <FeatureCard
+          title="Community Driven"
+          description="Connect with like-minded gamers who care about sustainability."
+        >
+          {" "}
+          <HandshakeIcon></HandshakeIcon>
+        </FeatureCard>
+        <FeatureCard
+          title="Eco-Friendly"
+          description="Reduce electronic waste and promote a circular economy for games."
+        >
+          {" "}
+          <RecycleIcon></RecycleIcon>
+        </FeatureCard>
+      </section>
+
+      <footer className="text-center space-y-4">
+        <CustomDialog
+          isLoginDialogOpen={isLoginDialogOpen}
+          setIsLoginDialogOpen={setIsLoginDialogOpen}
+        />
+        <p className="text-sm text-muted-foreground">
+          New to Regame? Create an account and start trading!
+        </p>
+      </footer>
     </div>
   );
 };
