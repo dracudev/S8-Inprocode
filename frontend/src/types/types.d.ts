@@ -16,5 +16,19 @@ export interface User {
   created_at: string;
 }
 
+interface Event {
+  id_event: number;
+  title: string;
+  description: string;
+  category: string[];
+  location: string;
+  latitude: number;
+  longitude: number;
+  start_date: string;
+  end_date: string;
+  category_color: string;
+}
+
 export type PartialGame = Partial<Game>;
 export type PartialUser = Partial<User>;
+export type PartialEvent = Partial<Event>;

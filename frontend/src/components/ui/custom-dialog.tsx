@@ -20,7 +20,7 @@ const CustomDialog: React.FC<CustomDialogProps> = ({
   return (
     <Dialog open={isLoginDialogOpen} onOpenChange={setIsLoginDialogOpen}>
       <DialogTrigger asChild>
-        <Button className="px-8 py-3 text-base bg-zinc-900 hover:bg-zinc-700 transition-colors">
+        <Button className="px-8 py-3 text-base bg-zinc-900 hover:bg-white hover:text-black transition-colors">
           Get Started <ArrowRight></ArrowRight>
         </Button>
       </DialogTrigger>

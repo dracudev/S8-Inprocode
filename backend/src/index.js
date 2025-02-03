@@ -65,7 +65,8 @@ app.get("/", (req, res) => {
 app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://s8-inprocode-frontend.vercel.app"
+    "https://s8-inprocode-frontend.vercel.app",
+    "http://localhost:5173"
   );
   res.header(
     "Access-Control-Allow-Methods",
