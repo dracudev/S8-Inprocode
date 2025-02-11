@@ -1,6 +1,9 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+import favicon from "serve-favicon";
 // import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import gameRoutes from "./routes/gameRoutes.js";
@@ -15,7 +18,12 @@ dotenv.config();
 const app = express();
 app.disable("x-powered-by");
 
-// CORS configuration
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use(favicon(path.join(__dirname, "..", "public", "favicon.ico")));
+app.use(express.static(path.join(__dirname, "..", "public")));
+
+// Specific CORS configuration
 const corsOptions = {
   origin: [
     "https://s8-inprocode-frontend.vercel.app",
@@ -47,6 +55,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 await testConnection();
+// Uncomment the line below to insert initial data to the database
 // await insertInitialUserData();
 
 // Routes
@@ -58,6 +67,17 @@ app.use("/api/event", eventRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({ status: "OK", message: "API is running" });
+});
+
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: "Something broke!" });
+  next();
 });
 
 // Local server
