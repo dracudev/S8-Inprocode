@@ -76,7 +76,6 @@ export const addGame = async (req, res) => {
         genre: genre,
       });
     } catch (error) {
-      // If the error is due to a duplicate title
       if (error.name === "SequelizeUniqueConstraintError") {
         res.status(400).json({
           code: -61,

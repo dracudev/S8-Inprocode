@@ -75,7 +75,6 @@ export const addEvent = async (req, res) => {
         end_date: end_date,
       });
     } catch (error) {
-      // If the error is due to a duplicate title
       if (error.name === "SequelizeUniqueConstraintError") {
         res.status(400).json({
           code: -61,

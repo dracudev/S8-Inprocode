@@ -11,16 +11,15 @@ export const handleCreate = async (
   try {
     const baseUrl = import.meta.env.VITE_APP_API_URL;
 
-    // Format the data to match backend expectations
     const payload = {
       title: formData.title,
-      platform: formData.platform, // Backend will handle the array-to-string conversion
-      genre: formData.genre, // Backend will handle the array-to-string conversion
+      platform: formData.platform,
+      genre: formData.genre,
       year: formData.year,
       photo: formData.photo,
     };
 
-    console.log("Sending payload:", payload); // Debug log
+    // console.log("Sending payload:", payload);
 
     const response = await fetch(`${baseUrl}api/game`, {
       method: "POST",
@@ -63,7 +62,6 @@ export const handleUpdate = async (
       throw new Error("Game ID is required for update");
     }
 
-    // Format the data to match backend expectations
     const payload = {
       title: formData.title,
       platform: formData.platform,
@@ -72,7 +70,7 @@ export const handleUpdate = async (
       photo: formData.photo,
     };
 
-    console.log("Updating game with payload:", payload); // Debug log
+    // console.log("Updating game with payload:", payload);
 
     const response = await fetch(`${baseUrl}api/game/${formData.id_game}`, {
       method: "PATCH",

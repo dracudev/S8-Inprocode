@@ -1,10 +1,11 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./index.css";
 import "mapbox-gl/dist/mapbox-gl.css";
 import useFetchEvent from "@/hooks/use-fetch-event";
 import mapIcon from "@/assets/map-icon.webp";
 import { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
+import MapLegend from "./map-legend";
 const INITIAL_CENTER: [number, number] = [2.15899, 41.38879];
 const INITIAL_ZOOM = 10.12;
 
@@ -13,6 +14,7 @@ interface Event {
   description: string;
   longitude: number;
   latitude: number;
+  category: string[];
 }
 
 interface GeoJsonData extends FeatureCollection<Geometry, GeoJsonProperties> {
@@ -29,20 +31,27 @@ interface GeoJsonData extends FeatureCollection<Geometry, GeoJsonProperties> {
   }[];
 }
 
-const convertToGeoJson = (events: Event[]): GeoJsonData => {
+const convertToGeoJson = (
+  events: Event[],
+  selectedCategories: string[]
+): GeoJsonData => {
   return {
     type: "FeatureCollection",
-    features: events.map((event) => ({
-      type: "Feature",
-      properties: {
-        title: event.title,
-        description: event.description,
-      },
-      geometry: {
-        type: "Point",
-        coordinates: [event.longitude, event.latitude],
-      },
-    })),
+    features: events
+      .filter((event) =>
+        event.category.some((cat) => selectedCategories.includes(cat))
+      )
+      .map((event) => ({
+        type: "Feature",
+        properties: {
+          title: event.title,
+          description: event.description,
+        },
+        geometry: {
+          type: "Point",
+          coordinates: [event.longitude, event.latitude],
+        },
+      })),
   };
 };
 
@@ -50,8 +59,14 @@ const MapBox = () => {
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const { data } = useFetchEvent("api/event");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([
+    "Meeting",
+    "Conference",
+    "Game Jam",
+    "Competition",
+  ]);
 
-  const geoJson = convertToGeoJson(data);
+  const geoJson = convertToGeoJson(data, selectedCategories);
 
   useEffect(() => {
     if (!mapContainerRef.current) return;
@@ -59,7 +74,7 @@ const MapBox = () => {
     mapboxgl.accessToken = import.meta.env.VITE_APP_MAP_TOKEN;
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: "mapbox://styles/mapbox/navigation-guidance-night-v4",
+      style: "mapbox://styles/mapbox/dark-v11",
       center: INITIAL_CENTER,
       zoom: INITIAL_ZOOM,
     });
@@ -147,7 +162,12 @@ const MapBox = () => {
     };
   }, [geoJson]);
 
-  return <div id="map-container" ref={mapContainerRef} />;
+  return (
+    <>
+      <div id="map-container" ref={mapContainerRef} />
+      <MapLegend onFilterChange={setSelectedCategories} />
+    </>
+  );
 };
 
 export default MapBox;

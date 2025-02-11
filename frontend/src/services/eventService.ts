@@ -18,7 +18,7 @@ export const handleCreate = async (
       description: formData.description,
     };
 
-    console.log("Sending payload:", payload); // Debug log
+    // console.log("Sending payload:", payload);
 
     const response = await fetch(`${baseUrl}api/event`, {
       method: "POST",
@@ -68,7 +68,7 @@ export const handleUpdate = async (
       description: formData.description,
     };
 
-    console.log("Updating Event with payload:", payload); // Debug log
+    // console.log("Updating Event with payload:", payload);
 
     const response = await fetch(`${baseUrl}api/event/${formData.id_event}`, {
       method: "PATCH",
