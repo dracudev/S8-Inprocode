@@ -43,7 +43,6 @@ const Calendar = () => {
     end: "",
   });
 
-  // Transform API events to FullCalendar format
   const calendarEvents = useMemo(() => {
     return events.map(
       (event: Event): CalendarEvent => ({
@@ -85,13 +84,13 @@ const Calendar = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle your API calls here
+    // TODO
     setIsModalOpen(false);
   };
 
   const handleDelete = async () => {
     if (!selectedEvent) return;
-    // Handle your API calls here
+    // TODO
     setIsModalOpen(false);
   };
 

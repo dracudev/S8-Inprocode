@@ -3,11 +3,11 @@
     "title": "Barcelona Game Dev Meetup",
     "description": "A meetup for game developers in Barcelona to network and share ideas.",
     "category": ["Meeting"],
-    "location": "Plaça de Catalunya, Barcelona",
+    "location": "Plaza de Catalunya, Barcelona",
     "latitude": 41.3870154,
     "longitude": 2.1700471,
-    "start_date": "2023-11-01T10:00:00Z",
-    "end_date": "2023-11-01T12:00:00Z",
+    "start_date": "2025-02-12T00:00:00Z",
+    "end_date": "2025-02-12T00:00:00Z",
     "category_color": "#FF5733"
   },
   {
@@ -17,8 +17,8 @@
     "location": "Fira Barcelona, Barcelona",
     "latitude": 41.354839,
     "longitude": 2.127713,
-    "start_date": "2023-11-05T09:00:00Z",
-    "end_date": "2023-11-05T17:00:00Z",
+    "start_date": "2025-02-12T10:52:04.528302Z",
+    "end_date": "2025-02-12T14:29:26.037736Z",
     "category_color": "#33FF57"
   },
   {
@@ -28,8 +28,8 @@
     "location": "Media-TIC, Barcelona",
     "latitude": 41.4036299,
     "longitude": 2.1918129,
-    "start_date": "2023-11-10T18:00:00Z",
-    "end_date": "2023-11-12T18:00:00Z",
+    "start_date": "2025-02-13T08:36:13.584906Z",
+    "end_date": "2025-02-13T15:50:56.603774Z",
     "category_color": "#3357FF"
   },
   {
@@ -39,8 +39,8 @@
     "location": "Palau Sant Jordi, Barcelona",
     "latitude": 41.363576,
     "longitude": 2.152574,
-    "start_date": "2023-11-15T10:00:00Z",
-    "end_date": "2023-11-15T20:00:00Z",
+    "start_date": "2025-02-14T02:43:01.132075Z",
+    "end_date": "2025-02-14T02:43:01.132075Z",
     "category_color": "#FF33A1"
   },
   {
@@ -50,8 +50,8 @@
     "location": "Razzmatazz, Barcelona",
     "latitude": 41.3985182,
     "longitude": 2.1917991,
-    "start_date": "2023-11-20T19:00:00Z",
-    "end_date": "2023-11-20T22:00:00Z",
+    "start_date": "2025-02-14T20:49:48.679245Z",
+    "end_date": "2025-02-14T20:49:48.679245Z",
     "category_color": "#FF5733"
   },
   {
@@ -61,19 +61,19 @@
     "location": "CCIB, Barcelona",
     "latitude": 41.410247,
     "longitude": 2.222526,
-    "start_date": "2023-11-25T09:00:00Z",
-    "end_date": "2023-11-25T17:00:00Z",
+    "start_date": "2025-02-15T11:19:14.716981Z",
+    "end_date": "2025-02-15T14:56:36.226415Z",
     "category_color": "#33FF57"
   },
   {
     "title": "Barcelona Winter Game Jam",
     "description": "A winter-themed game jam event in Barcelona.",
     "category": ["Game Jam"],
-    "location": "Canòdrom, Barcelona",
+    "location": "Candrom, Barcelona",
     "latitude": 41.428267,
     "longitude": 2.182473,
-    "start_date": "2023-12-01T18:00:00Z",
-    "end_date": "2023-12-03T18:00:00Z",
+    "start_date": "2025-02-16T12:40:45.283019Z",
+    "end_date": "2025-02-16T19:55:28.301887Z",
     "category_color": "#3357FF"
   },
   {
@@ -83,8 +83,8 @@
     "location": "La Farga, Barcelona",
     "latitude": 41.359556,
     "longitude": 2.099494,
-    "start_date": "2023-12-05T09:00:00Z",
-    "end_date": "2023-12-05T17:00:00Z",
+    "start_date": "2025-02-16T23:32:49.811321Z",
+    "end_date": "2025-02-17T03:10:11.320755Z",
     "category_color": "#33FF57"
   },
   {
@@ -94,8 +94,8 @@
     "location": "Espai Jove La Fontana, Barcelona",
     "latitude": 41.4036299,
     "longitude": 2.153403,
-    "start_date": "2023-12-10T18:00:00Z",
-    "end_date": "2023-12-12T18:00:00Z",
+    "start_date": "2025-02-17T21:16:58.867925Z",
+    "end_date": "2025-02-18T04:31:41.886792Z",
     "category_color": "#3357FF"
   },
   {
@@ -105,8 +105,8 @@
     "location": "Camp Nou, Barcelona",
     "latitude": 41.380896,
     "longitude": 2.12282,
-    "start_date": "2023-12-15T10:00:00Z",
-    "end_date": "2023-12-15T20:00:00Z",
+    "start_date": "2025-02-18T15:23:46.415094Z",
+    "end_date": "2025-02-18T15:23:46.415094Z",
     "category_color": "#FF33A1"
   },
   {
@@ -116,8 +116,8 @@
     "location": "Brunch Electronik, Barcelona",
     "latitude": 41.385064,
     "longitude": 2.173403,
-    "start_date": "2023-12-20T10:00:00Z",
-    "end_date": "2023-12-20T12:00:00Z",
+    "start_date": "2025-02-19T09:30:33.962264Z",
+    "end_date": "2025-02-19T09:30:33.962264Z",
     "category_color": "#FF5733"
   },
   {
@@ -127,8 +127,8 @@
     "location": "Hotel Arts, Barcelona",
     "latitude": 41.387917,
     "longitude": 2.195694,
-    "start_date": "2023-12-25T09:00:00Z",
-    "end_date": "2023-12-25T17:00:00Z",
+    "start_date": "2025-02-20T00:00:00Z",
+    "end_date": "2025-02-20T03:37:21.509434Z",
     "category_color": "#33FF57"
   },
   {
@@ -138,30 +138,30 @@
     "location": "Fabra i Coats, Barcelona",
     "latitude": 41.429262,
     "longitude": 2.189532,
-    "start_date": "2024-01-01T18:00:00Z",
-    "end_date": "2024-01-03T18:00:00Z",
+    "start_date": "2025-02-21T04:58:52.075472Z",
+    "end_date": "2025-02-21T12:13:35.094340Z",
     "category_color": "#3357FF"
   },
   {
     "title": "Barcelona Gaming Championship",
     "description": "A championship event for competitive gamers.",
     "category": ["Competition"],
-    "location": "Estadi Olímpic Lluís Companys, Barcelona",
+    "location": "Estadi Olimpic Lluis Companys, Barcelona",
     "latitude": 41.364015,
     "longitude": 2.155007,
-    "start_date": "2024-01-05T10:00:00Z",
-    "end_date": "2024-01-05T20:00:00Z",
+    "start_date": "2025-02-21T19:28:18.113208Z",
+    "end_date": "2025-02-21T19:28:18.113208Z",
     "category_color": "#FF33A1"
   },
   {
     "title": "Game Dev Coffee Chat",
     "description": "A casual coffee chat for game developers to discuss ideas.",
     "category": ["Meeting"],
-    "location": "Café de l'Opera, Barcelona",
+    "location": "Cafe de l'Opera, Barcelona",
     "latitude": 41.380896,
     "longitude": 2.173403,
-    "start_date": "2024-01-10T10:00:00Z",
-    "end_date": "2024-01-10T12:00:00Z",
+    "start_date": "2025-02-22T13:35:05.660377Z",
+    "end_date": "2025-02-22T13:35:05.660377Z",
     "category_color": "#FF5733"
   },
   {
@@ -171,30 +171,30 @@
     "location": "W Barcelona, Barcelona",
     "latitude": 41.368896,
     "longitude": 2.189532,
-    "start_date": "2024-01-15T09:00:00Z",
-    "end_date": "2024-01-15T17:00:00Z",
+    "start_date": "2025-02-23T04:04:31.698113Z",
+    "end_date": "2025-02-23T07:41:53.207547Z",
     "category_color": "#33FF57"
   },
   {
     "title": "Barcelona Summer Game Jam",
     "description": "A summer-themed game jam event in Barcelona.",
     "category": ["Game Jam"],
-    "location": "Casa Batlló, Barcelona",
+    "location": "Casa Batllo, Barcelona",
     "latitude": 41.39164,
     "longitude": 2.164832,
-    "start_date": "2024-01-20T18:00:00Z",
-    "end_date": "2024-01-22T18:00:00Z",
+    "start_date": "2025-02-24T01:48:40.754717Z",
+    "end_date": "2025-02-24T09:03:23.773585Z",
     "category_color": "#3357FF"
   },
   {
     "title": "Barcelona Gaming League",
     "description": "A league event for competitive gamers.",
     "category": ["Competition"],
-    "location": "Pavelló Blaugrana, Barcelona",
+    "location": "Pavell Blaugrana, Barcelona",
     "latitude": 41.380896,
     "longitude": 2.12282,
-    "start_date": "2024-01-25T10:00:00Z",
-    "end_date": "2024-01-25T20:00:00Z",
+    "start_date": "2025-02-24T19:55:28.301887Z",
+    "end_date": "2025-02-24T19:55:28.301887Z",
     "category_color": "#FF33A1"
   },
   {
@@ -204,8 +204,8 @@
     "location": "El Nacional, Barcelona",
     "latitude": 41.39164,
     "longitude": 2.164832,
-    "start_date": "2024-01-30T12:00:00Z",
-    "end_date": "2024-01-30T14:00:00Z",
+    "start_date": "2025-02-25T14:02:15.849057Z",
+    "end_date": "2025-02-25T14:02:15.849057Z",
     "category_color": "#FF5733"
   },
   {
@@ -215,8 +215,8 @@
     "location": "Palau de Congressos, Barcelona",
     "latitude": 41.39164,
     "longitude": 2.164832,
-    "start_date": "2024-02-05T09:00:00Z",
-    "end_date": "2024-02-05T17:00:00Z",
+    "start_date": "2025-02-26T08:09:03.396226Z",
+    "end_date": "2025-02-26T11:46:24.905660Z",
     "category_color": "#33FF57"
   },
   {
@@ -226,8 +226,8 @@
     "location": "Museu del Disseny, Barcelona",
     "latitude": 41.39164,
     "longitude": 2.164832,
-    "start_date": "2024-02-10T18:00:00Z",
-    "end_date": "2024-02-12T18:00:00Z",
+    "start_date": "2025-02-27T05:53:12.452830Z",
+    "end_date": "2025-02-27T13:07:55.471698Z",
     "category_color": "#3357FF"
   },
   {
@@ -237,8 +237,8 @@
     "location": "Gran Teatre del Liceu, Barcelona",
     "latitude": 41.380896,
     "longitude": 2.173403,
-    "start_date": "2024-02-15T10:00:00Z",
-    "end_date": "2024-02-15T20:00:00Z",
+    "start_date": "2025-02-28T00:00:00Z",
+    "end_date": "2025-02-28T00:00:00Z",
     "category_color": "#FF33A1"
   }
 ]

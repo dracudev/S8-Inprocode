@@ -16,7 +16,7 @@ const sequelize = isProduction
           rejectUnauthorized: false,
         },
       },
-      logging: false, // Set to true for debugging
+      logging: false,
     })
   : new Sequelize(
       process.env.DATABASE,

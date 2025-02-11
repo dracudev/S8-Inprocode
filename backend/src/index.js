@@ -15,7 +15,7 @@ dotenv.config();
 const app = express();
 app.disable("x-powered-by");
 
-// Specific CORS configuration
+// CORS configuration
 const corsOptions = {
   origin: [
     "https://s8-inprocode-frontend.vercel.app",
@@ -47,7 +47,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 await testConnection();
-// Uncomment the line below to insert initial data to the database
 // await insertInitialUserData();
 
 // Routes
@@ -59,28 +58,6 @@ app.use("/api/event", eventRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({ status: "OK", message: "API is running" });
-});
-
-// Add CORS headers to all responses
-app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://s8-inprocode-frontend.vercel.app",
-    "http://localhost:5173"
-  );
-  res.header(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-  );
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
-
-// Error handling middleware
-app.use((err, req, res) => {
-  console.error(err.stack);
-  res.status(500).json({ error: "Something broke!" });
 });
 
 // Local server

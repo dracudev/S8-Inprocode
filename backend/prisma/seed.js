@@ -23,10 +23,12 @@ async function main() {
     // Clear existing data
     await prisma.game.deleteMany();
     await prisma.user.deleteMany();
+    await prisma.event.deleteMany();
 
     // Load data from JSON files
     const users = loadJson("users.json");
     const games = loadJson("games.json");
+    const events = loadJson("events.json");
 
     // Insert users
     console.log("Seeding users...");
@@ -50,6 +52,19 @@ async function main() {
             ? game.platform.join(",")
             : game.platform,
           genre: Array.isArray(game.genre) ? game.genre.join(",") : game.genre,
+        },
+      });
+    }
+
+    // Insert events
+    console.log("Seeding events...");
+    for (const event of events) {
+      await prisma.event.create({
+        data: {
+          ...event,
+          category: Array.isArray(event.category)
+            ? event.category.join(",")
+            : event.category,
         },
       });
     }
