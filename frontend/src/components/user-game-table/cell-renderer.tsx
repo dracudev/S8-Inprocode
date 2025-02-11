@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../ui/button";
-import { handleDelete } from "@/utils/crud";
+import { handleDelete } from "@/services/gameService";
 import { Game } from "@/types/types";
 import { ICellRendererParams } from "ag-grid-community";
 

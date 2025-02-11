@@ -1,21 +1,17 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import FullCalendar from "@fullcalendar/react";
 import { DateSelectArg, EventClickArg } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import useFetchEvent from "@/hooks/use-fetch-event";
 import { Event } from "@/types/types";
+import EventDialog from "./EventDialog";
+import {
+  handleCreate,
+  handleUpdate,
+  handleDelete,
+} from "@/services/eventService";
 
 interface CalendarEvent {
   id: string;
@@ -25,22 +21,20 @@ interface CalendarEvent {
   description?: string;
 }
 
-interface EventForm {
-  title: string;
-  start: string;
-  end: string;
-  description: string;
-}
-
 const Calendar = () => {
-  const { data: events, loading, error } = useFetchEvent("api/event");
+  const [refresh, setRefresh] = useState<boolean>(false);
+  const {
+    data: events,
+    loading,
+    error,
+  } = useFetchEvent("api/event", [refresh]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
-  const [eventForm, setEventForm] = useState<EventForm>({
+  const [eventForm, setEventForm] = useState<Partial<Event>>({
     title: "",
     description: "",
-    start: "",
-    end: "",
+    start_date: "",
+    end_date: "",
   });
 
   const calendarEvents = useMemo(() => {
@@ -55,12 +49,16 @@ const Calendar = () => {
     );
   }, [events]);
 
+  const updateRowData = (): void => {
+    setRefresh((prev) => !prev);
+  };
+
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     setEventForm({
       title: "",
       description: "",
-      start: selectInfo.startStr,
-      end: selectInfo.endStr,
+      start_date: selectInfo.startStr,
+      end_date: selectInfo.endStr,
     });
     setSelectedEvent(null);
     setIsModalOpen(true);
@@ -75,8 +73,8 @@ const Calendar = () => {
       setEventForm({
         title: event.title,
         description: event.description || "",
-        start: event.start_date,
-        end: event.end_date,
+        start_date: event.start_date,
+        end_date: event.end_date,
       });
       setIsModalOpen(true);
     }
@@ -84,14 +82,25 @@ const Calendar = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO
+    if (selectedEvent) {
+      await handleUpdate(
+        {
+          ...eventForm,
+          id_event: selectedEvent.id_event,
+        },
+        updateRowData
+      );
+    } else {
+      await handleCreate(eventForm, updateRowData);
+    }
     setIsModalOpen(false);
   };
 
-  const handleDelete = async () => {
-    if (!selectedEvent) return;
-    // TODO
-    setIsModalOpen(false);
+  const handleClickDelete = async () => {
+    if (selectedEvent) {
+      await handleDelete(selectedEvent.id_event.toString(), updateRowData);
+      setIsModalOpen(false);
+    }
   };
 
   if (loading) {
@@ -129,85 +138,15 @@ const Calendar = () => {
         />
       </div>
 
-      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="bg-gray-800 text-white">
-          <DialogHeader>
-            <DialogTitle>
-              {selectedEvent ? "Edit Event" : "Create Event"}
-            </DialogTitle>
-          </DialogHeader>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <Label htmlFor="title">Title</Label>
-              <Input
-                id="title"
-                value={eventForm.title}
-                onChange={(e) =>
-                  setEventForm({ ...eventForm, title: e.target.value })
-                }
-                className="bg-gray-700 border-gray-600"
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="start">Start Date</Label>
-              <Input
-                id="start"
-                type="datetime-local"
-                value={eventForm.start}
-                onChange={(e) =>
-                  setEventForm({ ...eventForm, start: e.target.value })
-                }
-                className="bg-gray-700 border-gray-600"
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="end">End Date</Label>
-              <Input
-                id="end"
-                type="datetime-local"
-                value={eventForm.end}
-                onChange={(e) =>
-                  setEventForm({ ...eventForm, end: e.target.value })
-                }
-                className="bg-gray-700 border-gray-600"
-                required
-              />
-            </div>
-
-            <div>
-              <Label htmlFor="description">Description</Label>
-              <Input
-                id="description"
-                value={eventForm.description}
-                onChange={(e) =>
-                  setEventForm({ ...eventForm, description: e.target.value })
-                }
-                className="bg-gray-700 border-gray-600"
-              />
-            </div>
-
-            <DialogFooter className="space-x-2">
-              {selectedEvent && (
-                <Button
-                  type="button"
-                  variant="destructive"
-                  onClick={handleDelete}
-                >
-                  Delete
-                </Button>
-              )}
-              <Button type="submit" variant="default">
-                {selectedEvent ? "Update" : "Create"}
-              </Button>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
+      <EventDialog
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        eventForm={eventForm}
+        setEventForm={setEventForm}
+        handleSubmit={handleSubmit}
+        handleDelete={handleClickDelete}
+        selectedEvent={selectedEvent}
+      />
     </div>
   );
 };

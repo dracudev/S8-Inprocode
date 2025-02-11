@@ -86,8 +86,11 @@ export function AppSidebar() {
                 side="top"
                 className="w-[--radix-popper-anchor-width]"
               >
-                <Link to={"/profile"}>
-                  <DropdownMenuItem className="focus:bg-zinc-800 focus:text-slate-50 cursor-pointer">
+                <Link to={"#"}>
+                  <DropdownMenuItem
+                    disabled
+                    className="focus:bg-zinc-800 focus:text-slate-50 "
+                  >
                     <span>Account</span>
                   </DropdownMenuItem>
                 </Link>
@@ -96,7 +99,10 @@ export function AppSidebar() {
                     <span>Games</span>
                   </DropdownMenuItem>
                 </Link>
-                <DropdownMenuItem className="focus:bg-zinc-800 focus:text-slate-50 cursor-pointer">
+                <DropdownMenuItem
+                  disabled
+                  className="focus:bg-zinc-800 focus:text-slate-50 "
+                >
                   <span>Sign out</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>

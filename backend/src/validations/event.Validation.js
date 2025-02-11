@@ -15,32 +15,4 @@ export const eventValidator = [
     .withMessage("Description should be a string")
     .isLength({ min: 10 })
     .withMessage("Description should be at least 10 characters"),
-  body("category")
-    .exists()
-    .withMessage("Category is required")
-    .isArray()
-    .withMessage("Category should be an array")
-    .custom((categories) => {
-      if (categories.length === 0) {
-        throw new Error("Category should have at least one value");
-      }
-      return true;
-    })
-    .custom((categories) => {
-      const allowedCategories = [
-        "Meeting",
-        "Conference",
-        "Game Jam",
-        "Competition",
-      ];
-      const invalidCategories = categories.filter(
-        (category) => !allowedCategories.includes(category)
-      );
-      if (invalidCategories.length > 0) {
-        throw new Error(
-          `Invalid category(ies): ${invalidCategories.join(", ")}`
-        );
-      }
-      return true;
-    }),
 ];

@@ -65,13 +65,14 @@ export const addEvent = async (req, res) => {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, description, category } = req.body;
+    const { title, description, start_date, end_date } = req.body;
     let newEvent;
     try {
       newEvent = await Event.create({
         title: title,
         description: description,
-        category: category,
+        start_date: start_date,
+        end_date: end_date,
       });
     } catch (error) {
       // If the error is due to a duplicate title
@@ -81,9 +82,11 @@ export const addEvent = async (req, res) => {
           message: "Duplicate Event Title",
         });
       }
+      console.error("Error creating event:", error);
     }
 
     if (!newEvent) {
+      console.error(res.error);
       return res.status(404).json({
         code: -6,
         message: "Error When Adding The Event",
@@ -113,7 +116,7 @@ export const updateEvent = async (req, res) => {
     }
 
     const { id } = req.params;
-    const { title, description, category } = req.body;
+    const { title, description, start_date, end_date } = req.body;
 
     const event = await Event.findByPk(id);
     if (!event) {
@@ -125,7 +128,8 @@ export const updateEvent = async (req, res) => {
 
     event.title = title;
     event.description = description;
-    event.category = category;
+    event.start_date = start_date;
+    event.end_date = end_date;
     await event.save();
 
     res.status(200).json({

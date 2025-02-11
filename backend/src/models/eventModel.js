@@ -21,7 +21,8 @@ const Event = sequelize.define(
     },
     category: {
       type: DataTypes.STRING(200),
-      allowNull: false,
+      allowNull: true,
+      defaultValue: "",
       get() {
         const rawValue = this.getDataValue("category");
         if (!rawValue) {
@@ -41,14 +42,20 @@ const Event = sequelize.define(
         this.setDataValue("category", value.join(","));
       },
     },
-    location: { type: DataTypes.STRING(200), allowNull: false },
+    location: {
+      type: DataTypes.STRING(200),
+      allowNull: true,
+      defaultValue: "",
+    },
     latitude: {
       type: DataTypes.DECIMAL(10, 8),
-      allowNull: false,
+      allowNull: true,
+      defaultValue: 0,
     },
     longitude: {
       type: DataTypes.DECIMAL(11, 8),
-      allowNull: false,
+      allowNull: true,
+      defaultValue: 0,
     },
     start_date: {
       type: DataTypes.DATE,
@@ -58,7 +65,11 @@ const Event = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
-    category_color: { type: DataTypes.STRING(7), allowNull: false },
+    category_color: {
+      type: DataTypes.STRING(7),
+      allowNull: true,
+      defaultValue: "",
+    },
   },
   {
     timestamps: false,

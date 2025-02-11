@@ -15,7 +15,7 @@ import {
 } from "./cell-renderer";
 import { myTheme } from "./my-theme";
 import Modal from "./modal";
-import { handleCreate, handleUpdate } from "@/utils/crud";
+import { handleCreate, handleUpdate } from "@/services/gameService";
 import useFetch from "@/hooks/use-fetch-game";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
