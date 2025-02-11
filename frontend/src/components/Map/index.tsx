@@ -8,7 +8,6 @@ import { FeatureCollection, Geometry, GeoJsonProperties } from "geojson";
 const INITIAL_CENTER: [number, number] = [2.15899, 41.38879];
 const INITIAL_ZOOM = 10.12;
 
-// Define the Event type
 interface Event {
   title: string;
   description: string;
@@ -16,7 +15,6 @@ interface Event {
   latitude: number;
 }
 
-// Define the GeoJsonData type
 interface GeoJsonData extends FeatureCollection<Geometry, GeoJsonProperties> {
   features: {
     type: "Feature";
@@ -31,7 +29,6 @@ interface GeoJsonData extends FeatureCollection<Geometry, GeoJsonProperties> {
   }[];
 }
 
-// Convert Event[] to GeoJsonData
 const convertToGeoJson = (events: Event[]): GeoJsonData => {
   return {
     type: "FeatureCollection",
@@ -99,7 +96,7 @@ const MapBox = () => {
             "events-layer",
             (
               e: mapboxgl.MapMouseEvent & {
-                features?: mapboxgl.MapboxGeoJSONFeature[];
+                features?: mapboxgl.GeoJSONFeature[];
               }
             ) => {
               if (!e.features?.length) return;
