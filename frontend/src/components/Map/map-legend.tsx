@@ -29,7 +29,7 @@ const MapLegend: React.FC<LegendProps> = ({ onFilterChange }) => {
   };
 
   return (
-    <div className="absolute top-4 right-4 bg-zinc-900 p-4 rounded-lg shadow-lg z-10">
+    <div className="absolute top-12 right-5 bg-zinc-900 p-4 rounded-lg shadow-lg z-10">
       <h3 className="text-white font-semibold mb-3">Event Categories</h3>
       <div className="space-y-2">
         {ALLOWED_CATEGORIES.map((category) => (

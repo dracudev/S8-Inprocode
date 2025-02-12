@@ -2,8 +2,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import banner1 from "@/assets/banner1.webp";
 import banner2 from "@/assets/banner2.webp";
@@ -26,7 +24,7 @@ const CustomCarousel: React.FC<CarouselProps> = ({ className }) => {
           delay: 5000,
         }),
       ]}
-      className={className}
+      className={`w-full ${className}`}
     >
       <CarouselContent>
         {HomePageImages.map((src, index) => (
@@ -34,13 +32,11 @@ const CustomCarousel: React.FC<CarouselProps> = ({ className }) => {
             <img
               src={src}
               alt={`Game trading slide ${index + 1}`}
-              className="w-full h-[400px] object-cover rounded-xl"
+              className="h-[250px] w-full object-cover rounded-xl"
             />
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="bg-zinc-900 border-none shadow-xl" />
-      <CarouselNext className="bg-zinc-900 border-none shadow-xl" />
     </Carousel>
   );
 };

@@ -6,11 +6,12 @@ const Layout = () => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="flex flex-col w-full h-screen">
-        <SidebarTrigger />
-        <div className="flex items-center w-full h-full">
-          <Outlet />
+      <main className="flex flex-col w-full h-screen items-center">
+        <div className="w-full flex justify-start">
+          <SidebarTrigger />
         </div>
+
+        <Outlet />
       </main>
     </SidebarProvider>
   );
