@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "..", "public")));
 // Specific CORS configuration
 const corsOptions = {
   origin: [
-    "https://dracudev-regame.vercel.app/",
+    "https://dracudev-regame.vercel.app",
     "http://localhost:5173",
     "http://localhost:3000",
     "http://localhost:5000",
